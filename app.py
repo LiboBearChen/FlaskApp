@@ -22,12 +22,10 @@ def index():
 
 @app.route('/posts',methods=['GET','POST'])
 def posts():
-
     if request.method=='POST':
         post_title=request.form['title']
         post_author=request.form['author']
         post_content=request.form['content']
-        
         new_post= BlogPost(title=post_title,content=post_content,author=post_author)
         db.session.add(new_post)
         db.session.commit()
@@ -62,6 +60,10 @@ def hello(name,id):
 @app.route('/onlyget',methods=['GET'])
 def get_req():
     return 'You can  only get this webpage.'
+
+@app.route('/posts/new')
+def new_post():
+    return render_template('new_post.html')
 
 if __name__=="__main__":
     app.run(debug=True)

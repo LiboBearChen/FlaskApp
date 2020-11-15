@@ -6,23 +6,10 @@
 
 
 {% block body %}
-<h1>All Posts</h1>
-<hr>
-<h2>Create New Blog Post:</h2>
-<form action='/posts' method='POST'>
-    <label for="content">Title:</label>
-    <input class="form-control" type="text" name='title' id='title' placeholder="Enter Title" aria-label="Enter Title">
-    <br>
-    <label for="content">Author:</label>
-    <input class="form-control" type="text" name='author' id='author' placeholder="Enter Author"
-        aria-label="Enter Author">
-    <br>
-    <label for="content">Post:</label>
-    <textarea class="form-control" name='content' id="content" placeholder="Enter Content" aria-label="Enter Content"
-        rows="3"></textarea>
-    <br>
-    <input type="submit" value="Post">
-</form>
+<br>
+<h1 style="display: inline">All Posts</h1>
+<a class="btn btn-success float-right" href="/posts/new" >+ New Post</a>
+<br>
 <hr>
 {% for post in posts %}
 <br>
