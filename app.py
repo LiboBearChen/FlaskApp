@@ -20,6 +20,10 @@ class BlogPost(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
 @app.route('/posts',methods=['GET','POST'])
 def posts():
     if request.method=='POST':
