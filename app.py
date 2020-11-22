@@ -20,9 +20,9 @@ class BlogPost(db.Model):
 def index():
     return render_template('index.html')
 
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
+@app.route('/projects/<int:id>')
+def projects(id):
+    return render_template('projects.html',id=id)
 
 @app.route('/posts',methods=['GET','POST'])
 def posts():
@@ -61,9 +61,6 @@ def edit(id):
 def hello(name,id):
     return "Hello, "+name+", your id is: "+str(id)
 
-@app.route('/onlyget',methods=['GET'])
-def get_req():
-    return 'You can  only get this webpage.'
 
 @app.route('/posts/new')
 def new_post():
