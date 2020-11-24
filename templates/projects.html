@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>Projects</title>
+<script src="{{url_for('static',filename='js/Projects.js')}}"></script>
 {% endblock %}
 
 
@@ -13,16 +14,16 @@
 <br>
 <div class="row">
   <div class="col-3">
-    <div class="nav flex-column nav-pills">
+    <div class="nav flex-column nav-pills" id="tabs">
       <a class="nav-link active" data-toggle="pill" href="#noChoice" style="display: none;"></a>
-      <a class="nav-link" data-toggle="pill" href="#project1">Stock market analysis website</a>
-      <a class="nav-link" data-toggle="pill" href="#project2">Webpage analysis chrome extension</a>
-      <a class="nav-link" data-toggle="pill" href="#project3">Digital product shopping website</a>
+      <a class="nav-link" data-toggle="pill" href="#project1" id="tab1" onclick="changeActive('tab2');">Stock market analysis website</a>
+      <a class="nav-link" data-toggle="pill" href="#project2" id="tab2">Webpage analysis chrome extension</a>
+      <a class="nav-link" data-toggle="pill" href="#project3" id="tab3">Digital product shopping website</a>
     </div>
   </div>
   <div class="col-9">
-    <div class="tab-content">
-      <div class="tab-pane fade show" id="noChoice" style="text-align:center;">Please choose one project by clicking a tab from the left pane.</div>
+    <div class="tab-content" id="contents">
+      <div class="tab-pane fade active show" id="noChoice" style="text-align:center;">Please choose one project by clicking a tab from the left pane.</div>
       <div class="tab-pane fade" id="project1">
         <a class="btn btn-success" href="https://libostock.netlify.app">View Project →</a>
         <a class="btn btn-info float-right" href="https://github.com/LiboBearChen/stockchart">View Source on GitHub
