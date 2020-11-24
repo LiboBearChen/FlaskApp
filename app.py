@@ -22,7 +22,7 @@ def index():
 
 @app.route('/projects/<int:id>')
 def projects(id):
-    return render_template('projects.html',id=id)
+    return render_template('projects.html')
 
 @app.route('/posts',methods=['GET','POST'])
 def posts():

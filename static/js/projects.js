@@ -1,12 +1,31 @@
 //change active tabs and show the right content
 function changeActive(id) {
-    var tabs = document.querySelectorAll("#tabs a");
+    //make ids for tabs and contents
+    let tabID='tab'+id;
+    let contentID='content'+id;
+    //change tabs
+    let containerTabs = document.querySelector("#tabs");
+    let tabs = containerTabs.querySelectorAll("a");
     for (i in tabs) {
         tabs[i].className = 'nav-link';
     }
-    
-    console.log(tabs)
-    document.getElementById(id).className = "nav-link active";
+    document.getElementById(tabID).className = "nav-link active";
+
+    //change contents
+    let containerContents = document.querySelector("#contents");
+    let contents = containerContents.querySelectorAll("div");
+    for (i in tabs) {
+        tabs[i].className = 'tab-pane';
+    }
+    document.getElementById(contentID).className = "tab-pane active show";
 }
 
-changeActive()
+
+//run function after the page loaded completely
+document.addEventListener('DOMContentLoaded', function () {
+    //get variable from url
+    let pathArray = window.location.pathname.split('/');
+    let parameter = pathArray[pathArray.length - 1];
+
+    changeActive(parameter)
+}, false);
