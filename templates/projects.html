@@ -3,6 +3,7 @@
 {% block head %}
 <title>Projects</title>
 <script src="{{url_for('static',filename='js/projects.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='css/projects.css')}}">
 {% endblock %}
 
 
@@ -15,7 +16,7 @@
 <div class="row">
   <div class="col-3">
     <div class="nav flex-column nav-pills" id="tabs">
-      <a class="nav-link" data-toggle="pill" href="#content0" style="display: none;" id="tab0"></a>
+      <a class="nav-link active" data-toggle="pill" href="#content0" style="display: none;" id="tab0"></a>
       <a class="nav-link" data-toggle="pill" href="#content1" id="tab1">Stock market analysis website</a>
       <a class="nav-link" data-toggle="pill" href="#content2" id="tab2">Webpage analysis chrome extension</a>
       <a class="nav-link" data-toggle="pill" href="#content3" id="tab3">Digital product shopping website</a>
@@ -23,14 +24,21 @@
   </div>
   <div class="col-9">
     <div class="tab-content" id="contents">
-      <div class="tab-pane" id="content0" style="text-align:center;">Please choose one project by clicking a tab from the left pane.</div>
+      <div class="tab-pane" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
+        the left pane.</div>
       <div class="tab-pane" id="content1">
-        <a class="btn btn-success" href="https://libostock.netlify.app">View Project →</a>
-        <a class="btn btn-info float-right" href="https://github.com/LiboBearChen/stockchart">View Source on GitHub
+        {% block project1 %} {% endblock %}
+      </div>
+      <div class="tab-pane" id="content2">
+        <a class="btn btn-success" href="#">View Project →</a>
+        <a class="btn btn-info float-right" href="#">View Source on GitHub
           →</a>
       </div>
-      <div class="tab-pane" id="content2">""""""""""222222222222222222222222222""""""""""</div>
-      <div class="tab-pane" id="content3">"""""""""3"""""""""</div>
+      <div class="tab-pane" id="content3">
+        <a class="btn btn-success" href="#">View Project →</a>
+        <a class="btn btn-info float-right" href="#">View Source on GitHub
+          →</a>
+      </div>
     </div>
   </div>
 </div>

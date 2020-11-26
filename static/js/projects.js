@@ -7,9 +7,9 @@ function changeActive(id) {
     let containerTabs = document.querySelector("#tabs");
     let tabs = containerTabs.querySelectorAll("a");
     for (i in tabs) {
-        tabs[i].className = 'nav-link';
+        //tabs[i].className = 'nav-link';
     }
-    document.getElementById(tabID).className = "nav-link active";
+    //document.getElementById(tabID).className = "nav-link active";
 
     //change contents
     let containerContents = document.querySelector("#contents");
