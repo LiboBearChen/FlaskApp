@@ -27,17 +27,13 @@
       <div class="tab-pane" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
         the left pane.</div>
       <div class="tab-pane" id="content1">
-        {% block project1 %} {% endblock %}
+        {% include 'projects/project1.html' %}
       </div>
       <div class="tab-pane" id="content2">
-        <a class="btn btn-success" href="#">View Project →</a>
-        <a class="btn btn-info float-right" href="#">View Source on GitHub
-          →</a>
+        {% include 'projects/project2.html' %}
       </div>
       <div class="tab-pane" id="content3">
-        <a class="btn btn-success" href="#">View Project →</a>
-        <a class="btn btn-info float-right" href="#">View Source on GitHub
-          →</a>
+        {% include 'projects/project3.html' %}
       </div>
     </div>
   </div>
