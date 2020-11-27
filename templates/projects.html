@@ -4,6 +4,7 @@
 <title>Projects</title>
 <script src="{{url_for('static',filename='js/projects.js')}}"></script>
 <link rel="stylesheet" href="{{url_for('static',filename='css/projects.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.css" integrity="sha512-MkxwpMK+fg4ZkEZ/LhvriDh1e1Iq42gy09IEu2uyYIbVALpEh1L9GnlQ6Mb2h+8XcZvo2R5Rwd5MmkI3CUFKCQ==" crossorigin="anonymous" />
 {% endblock %}
 
 
@@ -38,5 +39,14 @@
     </div>
   </div>
 </div>
+{% endblock %}
 
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.min.js" integrity="sha512-kevYqUwQJ8zo36Zjbn+6+nIF/zLV4K5XYIhuxIrBx4RiRlpRUKi5tRp7Sjd47FPnIFYPVX9LbKBm6hZLF1fi1A==" crossorigin="anonymous"></script>
+<script>
+  $(function(){
+    $('#chart').orgChart();
+  })
+</script>
 {% endblock %}
