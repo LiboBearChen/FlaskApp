@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>Stacks</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/stacks.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -25,8 +26,18 @@
             </label>
         </div>
     </div>
-    <div id="fetchContainer" class="col-9">
-        <h3 style="text-align:center;">Fetching data from Github...</h3>
+    <div class="col-9">
+        <div class="card mb-4">
+            <h2 class="card-header" id="fileName">Source Code</h2>
+            <div class="card-body">
+                <div class="displayBox scroll-box" id="fetchContainer">
+                    <h3 style="text-align:center;">Fetching data from Github...</h3>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="https://getbootstrap.com" target="_blank">Check this file on Github</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
