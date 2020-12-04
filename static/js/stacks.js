@@ -17,9 +17,9 @@ function fetchData(stack) {
         var request1 = new XMLHttpRequest()
         request1.open('GET', download_url, true)
         request1.onload = function () {
-            let backString = '<plaintext>' + this.response.toString()
+            let backString = '<pre>' + colorTags(this.response.toString())+'</pre>'
             $('#fetchContainer').html(backString)
-            colorTags(this.response.toString())
+            
         }
         request1.send()
     }
@@ -30,6 +30,9 @@ function fetchData(stack) {
 function colorTags(code){
     let wordArray = code.match(/function/g)
     console.log(wordArray)
+    let replaceText = "<mark id='markWord'>$&</mark>"
+    let returnStr=code.replace(/function/g, replaceText)
+    return returnStr
 }
 
 $(document).ready(function(){
