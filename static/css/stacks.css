@@ -9,3 +9,7 @@
     float: left;
     padding: 1rem;
 }
+
+#fetchContainer {
+    background-color: rgb(231, 220, 220);
+}

@@ -17,7 +17,7 @@ function fetchData(stack) {
         var request1 = new XMLHttpRequest()
         request1.open('GET', download_url, true)
         request1.onload = function () {
-            let backString = '<pre>' + checkCode(this.response.toString()) + '</pre>'
+            let backString = '<plaintext>' + checkCode(this.response.toString()) 
             $('#fetchContainer').html(backString)
 
         }
