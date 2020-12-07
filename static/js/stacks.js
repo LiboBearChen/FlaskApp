@@ -1,55 +1,45 @@
 //global variables
-
-
+let githubData = { codeArray: [], linkArray: [] }
+let exampleArray = [
+    { repo: 'canvasgame', path: 'index.html' },
+    { repo: 'canvasgame', path: 'index.js' }
+]
 
 //fetch data from github api
-async function fetchData(stack) {
+function fetchData(stack, callback) {
     $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
 
-    let githubData = { codeArray: [], urlArray: [] }
-    let exampleArray = []
+    githubData = { codeArray: [], linkArray: [] }
+    let url=`https://api.github.com/repos/libobearchen/${exampleArray[i].repo}/contents/${exampleArray[i].path}`
 
-    if (stack == 1) {
-        exampleArray = [
-            { repo: 'canvasgame', path: 'index.html' },
-            { repo: 'canvasgame', path: 'index.js' }
-        ]
-    } else if (stack == 2) {
-        exampleArray = [
-            { repo: 'canvasgame', path: 'index.js' }
-        ]
-    }
+    //fetch data from github
+    let request1 = new XMLHttpRequest()
+    request1.open('GET', url, true)
+    request1.onload = function () {
+        if (request1.status == 200) {
+            let data = JSON.parse(this.response)
+            let download_url = data.download_url
+            let html_url = data.html_url
 
-    //loop through all examples
-    for (i in exampleArray) {
-        let request1 = new XMLHttpRequest()
-        request1.open('GET', `https://api.github.com/repos/libobearchen/${exampleArray[i].repo}/contents/${exampleArray[i].path}`, true)
-        request1.onload = function () {
-            if (request1.status == 200) {
-                let data = JSON.parse(this.response)
-                let download_url = data.download_url
-                let url = data.html_url
-
-                //download source code
-                let request2 = new XMLHttpRequest()
-                request2.open('GET', download_url, true)
-                request2.onload = function () {
-                    if (request1.status == 200) {
-                        let code = '<plaintext>' + checkCode(this.response.toString())
-                        githubData.codeArray.push(code)
-                        githubData.urlArray.push(url)
-                    } else {
-                        $('#fetchContainer').html('Failed to download the source code!')
-                    }
+            //download source code
+            let request2 = new XMLHttpRequest()
+            request2.open('GET', download_url, true)
+            request2.onload = function () {
+                if (request1.status == 200) {
+                    let code = '<plaintext>' + checkCode(this.response.toString())
+                    githubData.codeArray.push(code)
+                    githubData.linkArray.push(html_url)
+                } else {
+                    $('#fetchContainer').html('Failed to download the source code!')
                 }
-                request2.send()
-            } else {
-                $('#fetchContainer').html('Failed to fetch the data from Github!')
             }
+            request2.send()
+        } else {
+            $('#fetchContainer').html('Failed to fetch the data from Github!')
         }
-        request1.send()
     }
-    return githubData
+    request1.send()
+
 }
 
 //function list template
@@ -73,10 +63,11 @@ function checkCode(code) {
 }
 
 //diaplay source code and link
-function displayer(value,codeIndex) {
+function displayer(value, codeIndex) {
     $('#fetchContainer').html(value.codeArray[codeIndex])
-    $('#urlLink').attr('href', value.urlArray[codeIndex])
+    $('#urlLink').attr('href', value.linkArray[codeIndex])
     $('#urlLink').html('Check this file on Github')
+    console.log(value)
 }
 
 $(document).ready(function () {
@@ -87,13 +78,8 @@ $(document).ready(function () {
 
         codeIndex = 0
 
-        fetchData(this.value).then(
-            function (value) { 
-                console.log(value)
-                displayer(value,codeIndex) },
-            function (error) { displayer(error) }
-        )
-        
+        fetchData(this.value, displayer)
+
     })
 
     //arrow buttons listener
