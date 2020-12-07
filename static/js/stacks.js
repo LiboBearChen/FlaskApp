@@ -1,3 +1,7 @@
+//global variables
+let data
+let index
+
 //fetch data from github api
 function fetchData(stack) {
     $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
@@ -21,25 +25,30 @@ function fetchData(stack) {
         let request1 = new XMLHttpRequest()
         request1.open('GET', `https://api.github.com/repos/libobearchen/${exampleArray[i].repo}/contents/${exampleArray[i].path}`, true)
         request1.onload = function () {
-            let data = JSON.parse(this.response)
-            let download_url = data.download_url
-            let url = data.html_url
+            if (request1.status == 200) {
+                let data = JSON.parse(this.response)
+                let download_url = data.download_url
+                let url = data.html_url
 
-            //download source code
-            let request2 = new XMLHttpRequest()
-            request2.open('GET', download_url, true)
-            request2.onload = function () {
-                let code = '<plaintext>' + checkCode(this.response.toString())
-                returnData.codeArray.push(code)
-                returnData.urlArray.push(url)
-                console.log(url)
+                //download source code
+                let request2 = new XMLHttpRequest()
+                request2.open('GET', download_url, true)
+                request2.onload = function () {
+                    if (request1.status == 200) {
+                        let code = '<plaintext>' + checkCode(this.response.toString())
+                        returnData.codeArray.push(code)
+                        returnData.urlArray.push(url)
+                    } else {
+                        $('#fetchContainer').html('Failed to download the source code!')
+                    }
+                }
+                request2.send()
+            } else {
+                $('#fetchContainer').html('Failed to fetch the data from Github!')
             }
-            request2.send()
         }
         request1.send()
     }
-
-    return returnData
 }
 
 //function list template
@@ -63,13 +72,12 @@ function checkCode(code) {
 }
 
 $(document).ready(function () {
-    let data
-    let index
+
 
     //radio buttons listener
     $('input[type=radio][name=stack]').change(function () {
-        index=0
-        data=fetchData(this.value)
+        index = 0
+        fetchData(this.value)
         console.log(data)
         $('#fetchContainer').html(data.codeArray[index])
         $('#urlLink').attr('href', data.urlArray[index])
