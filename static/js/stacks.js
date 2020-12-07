@@ -1,12 +1,12 @@
 //global variables
-let data
-let index
+
+
 
 //fetch data from github api
-function fetchData(stack) {
+async function fetchData(stack) {
     $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
 
-    let returnData = { codeArray: [], urlArray: [] }
+    let githubData = { codeArray: [], urlArray: [] }
     let exampleArray = []
 
     if (stack == 1) {
@@ -36,8 +36,8 @@ function fetchData(stack) {
                 request2.onload = function () {
                     if (request1.status == 200) {
                         let code = '<plaintext>' + checkCode(this.response.toString())
-                        returnData.codeArray.push(code)
-                        returnData.urlArray.push(url)
+                        githubData.codeArray.push(code)
+                        githubData.urlArray.push(url)
                     } else {
                         $('#fetchContainer').html('Failed to download the source code!')
                     }
@@ -49,6 +49,7 @@ function fetchData(stack) {
         }
         request1.send()
     }
+    return githubData
 }
 
 //function list template
@@ -71,17 +72,28 @@ function checkCode(code) {
     return returnStr
 }
 
-$(document).ready(function () {
+//diaplay source code and link
+function displayer(value,codeIndex) {
+    $('#fetchContainer').html(value.codeArray[codeIndex])
+    $('#urlLink').attr('href', value.urlArray[codeIndex])
+    $('#urlLink').html('Check this file on Github')
+}
 
+$(document).ready(function () {
+    let codeIndex = 0
 
     //radio buttons listener
     $('input[type=radio][name=stack]').change(function () {
-        index = 0
-        fetchData(this.value)
-        console.log(data)
-        $('#fetchContainer').html(data.codeArray[index])
-        $('#urlLink').attr('href', data.urlArray[index])
-        $('#urlLink').html('Check this file on Github')
+
+        codeIndex = 0
+
+        fetchData(this.value).then(
+            function (value) { 
+                console.log(value)
+                displayer(value,codeIndex) },
+            function (error) { displayer(error) }
+        )
+        
     })
 
     //arrow buttons listener
