@@ -1,16 +1,26 @@
 //global variables
-let githubData = { codeArray: [], linkArray: [] }
+
+
+
 let exampleArray = [
-    { repo: 'canvasgame', path: 'index.html' },
-    { repo: 'canvasgame', path: 'index.js' }
+    [
+        { repo: 'canvasgame', path: 'index.html' },  //2 pages
+        { repo: 'textreader', path: 'style.css' }
+    ],
+    [
+        { repo: 'textreader', path: 'index.html' },
+        { repo: 'canvasgame', path: 'index.js' },
+        { repo: 'stockchart', path: 'package.json' }
+    ]
 ]
 
+
 //fetch data from github api
-function fetchData(stack, callback) {
+function fetchData(exampleIndex, examplePage, callback) {
     $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
 
-    githubData = { codeArray: [], linkArray: [] }
-    let url=`https://api.github.com/repos/libobearchen/${exampleArray[i].repo}/contents/${exampleArray[i].path}`
+    let githubData = { code: '', link: '' }
+    let url = `https://api.github.com/repos/libobearchen/${exampleArray[exampleIndex][examplePage].repo}/contents/${exampleArray[exampleIndex][examplePage].path}`
 
     //fetch data from github
     let request1 = new XMLHttpRequest()
@@ -27,8 +37,9 @@ function fetchData(stack, callback) {
             request2.onload = function () {
                 if (request1.status == 200) {
                     let code = '<plaintext>' + checkCode(this.response.toString())
-                    githubData.codeArray.push(code)
-                    githubData.linkArray.push(html_url)
+                    githubData.code = code
+                    githubData.link = html_url
+                    callback(githubData, examplePage, exampleIndex)
                 } else {
                     $('#fetchContainer').html('Failed to download the source code!')
                 }
@@ -63,34 +74,36 @@ function checkCode(code) {
 }
 
 //diaplay source code and link
-function displayer(value, codeIndex) {
-    $('#fetchContainer').html(value.codeArray[codeIndex])
-    $('#urlLink').attr('href', value.linkArray[codeIndex])
-    $('#urlLink').html('Check this file on Github')
-    console.log(value)
+function displayer(value, examplePage, exampleIndex) {
+    $('#fetchContainer').html(value.code)
+    $('#urlLink').attr('href', value.link)
+    $('#urlLink').html('View this file on Github')
+    $('#page').html(`${examplePage + 1}/${exampleArray[exampleIndex].length}`)
 }
 
 $(document).ready(function () {
-    let codeIndex = 0
+    let exampleIndex = 0
+    let examplePage = -1
 
     //radio buttons listener
     $('input[type=radio][name=stack]').change(function () {
-
-        codeIndex = 0
-
-        fetchData(this.value, displayer)
-
+        exampleIndex = this.value - 1
+        examplePage = 0
+        fetchData(exampleIndex, examplePage, displayer)
     })
 
     //arrow buttons listener
-    /* $('#').click(function () {
-        for(i in data.urlArray){
-            data.urlArray[i]
-            index++
+    $('#next').click(function () {
+        if (examplePage > -1 && examplePage < exampleArray[exampleIndex].length - 1) {
+            examplePage++
+            fetchData(exampleIndex, examplePage, displayer)
         }
-        $('#fetchContainer').html(code)
-        $('#urlLink').attr('href', url)
-        $('#urlLink').html('Check this file on Github')
-    }) */
+    })
+    $('#previous').click(function () {
+        if (examplePage >= 1) {
+            examplePage--
+            fetchData(exampleIndex, examplePage, displayer)
+        }
+    })
 
 })
