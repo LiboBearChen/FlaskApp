@@ -16,7 +16,7 @@ let exampleArray = [
 
 
 //fetch data from github api
-function fetchData(exampleIndex, examplePage, callback) {
+function fetchData(exampleIndex, examplePage, callback1, callback2) {
     $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
 
     let githubData = { code: '', link: '' }
@@ -36,10 +36,11 @@ function fetchData(exampleIndex, examplePage, callback) {
             request2.open('GET', download_url, true)
             request2.onload = function () {
                 if (request1.status == 200) {
-                    let code = '<plaintext>' + checkCode(this.response.toString())
-                    githubData.code = code
+                    let code = '<plaintext>' + this.response.toString()
+                    console.log(code)
                     githubData.link = html_url
-                    callback(githubData, examplePage, exampleIndex)
+                    githubData.code = code
+                    callback2(githubData, examplePage, exampleIndex)
                 } else {
                     $('#fetchContainer').html('Failed to download the source code!')
                 }
@@ -64,21 +65,24 @@ function ULTemplate(items, element) {
     element.innerHTML = resultsHTML
 }
 
-//analyse and change source code
-function checkCode(code) {
-    let functionArray = code.match(/function/g)
+//analyse and mark source code
+function markCode(code) {
+    /* let functionArray = code.match(/function/g)
     ULTemplate(functionArray, document.getElementById("functions"))
     let replaceText = "<mark id='markWord'>$&</mark>"
-    let returnStr = code.replace(/function/g, replaceText)
+    let returnStr = code.replace(/function/g, replaceText) */
     return returnStr
 }
 
-//diaplay source code and link
+//diaplay source code and links
 function displayer(value, examplePage, exampleIndex) {
+    let repoName = exampleArray[exampleIndex][examplePage].repo
+    let repoLink = `https://github.com/libobearchen/${repoName}`
     $('#fetchContainer').html(value.code)
-    $('#urlLink').attr('href', value.link)
-    $('#urlLink').html('View this file on Github')
+    $('#fileLink').attr('href', value.link)
+    $('#fileLink').html('View this file on Github')
     $('#page').html(`${examplePage + 1}/${exampleArray[exampleIndex].length}`)
+    $('#repo').html(`   From Github Repository: <a target="_blank" href=${repoLink}>${repoName}</a>`)
 }
 
 $(document).ready(function () {
@@ -89,20 +93,20 @@ $(document).ready(function () {
     $('input[type=radio][name=stack]').change(function () {
         exampleIndex = this.value - 1
         examplePage = 0
-        fetchData(exampleIndex, examplePage, displayer)
+        fetchData(exampleIndex, examplePage, markCode, displayer)
     })
 
     //arrow buttons listener
     $('#next').click(function () {
         if (examplePage > -1 && examplePage < exampleArray[exampleIndex].length - 1) {
             examplePage++
-            fetchData(exampleIndex, examplePage, displayer)
+            fetchData(exampleIndex, examplePage, markCode, displayer)
         }
     })
     $('#previous').click(function () {
         if (examplePage >= 1) {
             examplePage--
-            fetchData(exampleIndex, examplePage, displayer)
+            fetchData(exampleIndex, examplePage, markCode, displayer)
         }
     })
 
