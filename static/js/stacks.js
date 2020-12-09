@@ -36,7 +36,7 @@ function fetchData(exampleIndex, examplePage, callback1, callback2) {
             request2.open('GET', download_url, true)
             request2.onload = function () {
                 if (request1.status == 200) {
-                    let code = '<plaintext>' + this.response.toString()
+                    let code = '<plaintext>' + callback1(this.response.toString())
                     console.log(code)
                     githubData.link = html_url
                     githubData.code = code
@@ -67,6 +67,10 @@ function ULTemplate(items, element) {
 
 //analyse and mark source code
 function markCode(code) {
+    let returnStr = code.split('\n').map((line, index) =>{
+        let lineNumber=String(index + 1).padStart(4)
+        return `${lineNumber}. ${line}`
+    }).join('\n')
     /* let functionArray = code.match(/function/g)
     ULTemplate(functionArray, document.getElementById("functions"))
     let replaceText = "<mark id='markWord'>$&</mark>"
