@@ -1,0 +1,44 @@
+div.orgChart {
+    overflow-x: auto;
+}
+
+div.orgChart div.node {
+    cursor: zoom-in;
+    width: 120px;
+}
+
+div.orgChart div.node:hover {
+    background-color: white;
+}
+
+div.orgChart div.node.level1:hover {
+    background-color: white;
+}
+
+div.orgChart div.node.level2:hover {
+    background-color: white;
+}
+
+div.orgChart div.node.level3:hover {
+    background-color: white;
+}
+
+div.orgChart div.node.level4:hover {
+    background-color: white;
+}
+
+div.orgChart div.node.level1 {
+    background-color: #fbcece;
+}
+
+div.orgChart div.node.level2 {
+    background-color: #cefbce;
+}
+
+div.orgChart div.node.level3 {
+    background-color: #e0cefb;
+}
+
+div.orgChart div.node.level4 {
+    background-color: #84c2d1;
+}
