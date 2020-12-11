@@ -23,6 +23,7 @@
       <a class="nav-link" data-toggle="pill" href="#content1" id="tab1">Stock market analysis website</a>
       <a class="nav-link" data-toggle="pill" href="#content2" id="tab2">Webpage analysis chrome extension</a>
       <a class="nav-link" data-toggle="pill" href="#content3" id="tab3">Digital product shopping website</a>
+      <a class="nav-link" data-toggle="pill" href="#content4" id="tab4">Coding blog (this website)</a>
     </div>
   </div>
   <div class="col-9">
@@ -37,6 +38,9 @@
       </div>
       <div class="tab-pane" id="content3">
         {% include 'projects/project3.html' %}
+      </div>
+      <div class="tab-pane" id="content4">
+        {% include 'projects/project4.html' %}
       </div>
     </div>
   </div>
@@ -53,6 +57,7 @@
     $('#chart1').orgChart({ container: $('#chartContainer1') });
     $('#chart2').orgChart({ container: $('#chartContainer2') });
     $('#chart3').orgChart({ container: $('#chartContainer3') });
+    $('#chart4').orgChart({ container: $('#chartContainer4') });
   })
 </script>
 {% endblock %}
