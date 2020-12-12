@@ -1,8 +1,8 @@
 //change active tabs and show the right content
 function changeActive(id) {
     //make ids for tabs and contents
-    let tabID='tab'+id;
-    let contentID='content'+id;
+    let tabID = 'tab' + id;
+    let contentID = 'content' + id;
     //change tabs
     let containerTabs = document.querySelector("#tabs");
     let tabs = containerTabs.querySelectorAll("a");
@@ -29,3 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     changeActive(parameter)
 }, false);
+
+//generate org charts
+$(function () {
+    $('#chart1').orgChart({ container: $('#chartContainer1') });
+    $('#chart2').orgChart({ container: $('#chartContainer2') });
+    $('#chart3').orgChart({ container: $('#chartContainer3') });
+    $('#chart4').orgChart({ container: $('#chartContainer4') });
+})
