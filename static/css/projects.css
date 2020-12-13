@@ -46,14 +46,3 @@ div.orgChart div.node.level3 {
 div.orgChart div.node.level4 {
     background-color: #84c2d1;
 }
-
-/* show descriptions when boxes are hovered */
-
-.hide1 {
-    display: none;
-}
-
-#chart1.level0-node0:hover+.hide1 {
-    display: block;
-    color: red;
-}

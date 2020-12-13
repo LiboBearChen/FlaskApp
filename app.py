@@ -20,6 +20,10 @@ class BlogPost(db.Model):
 def index():
     return render_template('index.html')
 
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
 @app.route('/stacks')
 def stacks():
     return render_template('stacks.html')
