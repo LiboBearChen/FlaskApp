@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>Home</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -9,7 +10,7 @@
 <h1>Home Page</h1>
 <br>
 <main role="main">
-  <div class="jumbotron">
+  <div id="backPic2">
     <div class="col-sm-8 mx-auto">
       <h1>Welcome</h1>
       <p>Welcome to the coding blog. This website and all the projects were coded and maintained by <a

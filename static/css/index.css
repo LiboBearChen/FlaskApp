@@ -1,7 +1,8 @@
-#backPic1 {
+#backPic2 {
     border: 2px solid black;
     padding: 25px;
-    background: url(../images/pic1.jpg);
+    background: url(../images/pic2.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    font-weight: bold;
 }
