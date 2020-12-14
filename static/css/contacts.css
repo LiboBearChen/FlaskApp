@@ -1,0 +1,7 @@
+#backPic {
+    border: 2px solid black;
+    padding: 25px;
+    background: url(static/images/pic1.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
