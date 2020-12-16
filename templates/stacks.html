@@ -7,39 +7,74 @@
 
 {% block body %}
 <br>
-<h1>Teck Stacks</h1>
+<h1>Tech Stacks</h1>
 <br>
 <hr>
 <br>
 <div class="row">
+
     <div class="col-3">
-        <div class="row">
-            <label>
-                <input type="radio" name="stack" value="1"> HTML
-            </label>
+        <h5><strong>Frontend Framework:</strong></h5>
+        <div class="buttonGroup" id="box1">
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="1"> React
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> React-Redux
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> jQuery
+                </label>
+            </div>
         </div>
-        <div class="row">
-            <label>
-                <input type="radio" name="stack" value="2"> Javascript
-            </label>
+        <br>
+        <h5><strong>Backend Solution:</strong></h5>
+        <div class="buttonGroup" id="box2">
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="1"> Node
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> Node-Express
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> Docker
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> Flask
+                </label>
+            </div>
+        </div>
+        <br>
+        <h5><strong>Database:</strong></h5>
+        <div class="buttonGroup" id="box3">
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="1"> MongoDB
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    <input type="radio" name="stack" value="2"> MySQL
+                </label>
+            </div>
         </div>
     </div>
     <div class="col-9">
-        <div class="card my-4">
-            <h2 class="card-header">Analysis</h2>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="list-unstyled mb-0" id="functions">
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="card mb-4">
-            <h2 class="card-header" id="fileName" >
-                Source Code Example(s):    
+            <h2 class="card-header" id="fileName">
+                Source Code Example(s):
                 <span id="page"></span>
                 <a class="btn btn-success float-right" id="next"><strong>></strong></a>
                 <a class="btn btn-success float-right mr-2" id="previous"><strong><</strong></a>

@@ -13,3 +13,23 @@
 #fetchContainer {
     background-color: rgb(231, 220, 220);
 }
+
+.buttonGroup{
+    border: 10px solid rgb(124, 123, 118);
+    padding: 20px;
+}
+
+#box1{
+    background: -webkit-linear-gradient(to right, white, red);
+    background: linear-gradient(to right, white, red);
+}
+
+#box2{
+    background: -webkit-linear-gradient(to right, white, green);
+    background: linear-gradient(to right, white, green);
+}
+
+#box3{
+    background: -webkit-linear-gradient(to right, white, blue);
+    background: linear-gradient(to right, white, blue);
+}
