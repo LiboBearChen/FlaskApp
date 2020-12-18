@@ -19,6 +19,9 @@
 {% else %}
 <small>Written by Unknown on {{post.date_posted}}</small>
 {% endif %}
+{% if post.author %}
+<small><a href="{{post.link}}" target="_blank">Web Link</a></small>
+{% endif %}
 <br>
 <br>
 <p style="white-space: pre-wrap"> {{post.content}}</p>

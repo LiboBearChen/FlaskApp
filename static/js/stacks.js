@@ -17,7 +17,7 @@ let exampleArray = [
 
 //fetch data from github api
 function fetchData(exampleIndex, examplePage, callback1, callback2) {
-    $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...</h3>")
+    $('#fetchContainer').html("<h3 style='text-align:center;'>Fetching data from Github...<br><br><p><i class='fa fa-spinner w3-spin' style='font-size:200px'></i></p></h3>")
 
     let githubData = { code: '', link: '' }
     let url = `https://api.github.com/repos/libobearchen/${exampleArray[exampleIndex][examplePage].repo}/contents/${exampleArray[exampleIndex][examplePage].path}`

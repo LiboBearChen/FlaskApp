@@ -1,17 +1,22 @@
 from flask import Flask, render_template,request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_migrate import Migrate
+
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
 db=SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class BlogPost(db.Model):
     id=db.Column(db.Integer,primary_key=True)
+    date_posted=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+
     title=db.Column(db.String(100),nullable=False)
     content=db.Column(db.Text,nullable=False)
     author=db.Column(db.String(20),nullable=False,default='N/A')
-    date_posted=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    link=db.Column(db.Text,nullable=True)
 
     def __repr__(self):
         return 'Blog post '+str(self.id)
@@ -38,7 +43,8 @@ def posts():
         post_title=request.form['title']
         post_author=request.form['author']
         post_content=request.form['content']
-        new_post= BlogPost(title=post_title,content=post_content,author=post_author)
+        post_link=request.form['link']
+        new_post= BlogPost(title=post_title,content=post_content,author=post_author,link=post_link)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
@@ -60,6 +66,7 @@ def edit(id):
         post.title=request.form['title']
         post.author=request.form['author']
         post.content=request.form['content']
+        post.link=request.form['link']
         db.session.commit()
         return redirect('/posts')
     else:
