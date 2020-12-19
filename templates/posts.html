@@ -2,13 +2,15 @@
 
 {% block head %}
 <title>Posts</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/posts.css')}}">
+
 {% endblock %}
 
 
 {% block body %}
 <br>
-<h1 style="display: inline">All Posts</h1>
-<a class="btn btn-success float-right" href="/posts/new" >+ New Post</a>
+<h1 style="display: inline">Coding Digest</h1>
+<a class="btn btn-success float-right" href="/posts/new">+ New Post</a>
 <br>
 <hr>
 {% for post in posts %}
@@ -30,4 +32,9 @@
 <a class="btn btn-primary" href="/posts/edit/{{post.id}}">Edit</a>
 <hr>
 {% endfor %}
+{% endblock %}
+
+{% block bodyScript %}
+<script > let posts ='{{ posts }}'</script>
+<script src="{{url_for('static',filename='js/posts.js')}}"></script>
 {% endblock %}

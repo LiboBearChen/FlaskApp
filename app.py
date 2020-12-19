@@ -19,7 +19,7 @@ class BlogPost(db.Model):
     link=db.Column(db.Text,nullable=True)
 
     def __repr__(self):
-        return 'Blog post '+str(self.id)
+        return 'Blog Post '+str(self.id)
 
 @app.route('/')
 def index():
