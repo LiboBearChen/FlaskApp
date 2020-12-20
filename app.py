@@ -9,18 +9,31 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
 db=SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+#database models
 class BlogPost(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     date_posted=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
 
     title=db.Column(db.String(100),nullable=False)
-    content=db.Column(db.Text,nullable=False)
     author=db.Column(db.String(20),nullable=False,default='N/A')
     link=db.Column(db.Text,nullable=True)
+    tags=db.Column(db.Text,nullable=True)
+    content=db.Column(db.Text,nullable=False)
 
     def __repr__(self):
         return 'Blog Post '+str(self.id)
 
+class Tag(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+
+    name=db.Column(db.String(100),nullable=False)
+    link=db.Column(db.String(1000),nullable=False)
+
+    def __repr__(self):
+        return 'Tag '+str(self.id)
+
+
+#app routes
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -42,9 +55,11 @@ def posts():
     if request.method=='POST':
         post_title=request.form['title']
         post_author=request.form['author']
-        post_content=request.form['content']
         post_link=request.form['link']
-        new_post= BlogPost(title=post_title,content=post_content,author=post_author,link=post_link)
+        post_tags=request.form['tags']
+        post_content=request.form['content']
+        
+        new_post= BlogPost(title=post_title,content=post_content,author=post_author,link=post_link,tags=post_tags)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
@@ -65,8 +80,10 @@ def edit(id):
     if request.method=='POST':
         post.title=request.form['title']
         post.author=request.form['author']
-        post.content=request.form['content']
         post.link=request.form['link']
+        post.tags=request.form['tags']
+        post.content=request.form['content']
+        
         db.session.commit()
         return redirect('/posts')
     else:
