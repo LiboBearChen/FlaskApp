@@ -16,18 +16,14 @@
 {% for post in posts %}
 <br>
 <h2>{{post.title}}</h2>
-{% if post.author %}
-<small>Written by {{post.author}} on {{post.date_posted}}</small>
-{% else %}
-<small>Written by Unknown on {{post.date_posted}}</small>
-{% endif %}
+<small>Excerpted on <strong>{{post.date_posted}}</strong></small>
 {% if post.link %}
-<small><a href="{{post.link}}" target="_blank">Web Link</a></small>
+<small>from <a href="{{post.link}}" target="_blank">Web Link</a></small>
 {% endif %}
 
 <br>
 <br>
-<p style="white-space: pre-wrap"> {{post.content}}</p>
+<p style="white-space: pre-wrap">{{post.content}}</p>
 <br>
 <a class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
 <a class="btn btn-primary" href="/posts/edit/{{post.id}}">Edit</a>

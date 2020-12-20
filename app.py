@@ -12,10 +12,9 @@ migrate = Migrate(app, db)
 #database models
 class BlogPost(db.Model):
     id=db.Column(db.Integer,primary_key=True)
-    date_posted=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    date_posted=db.Column(db.Date,nullable=False,default=datetime.utcnow)
 
     title=db.Column(db.String(100),nullable=False)
-    author=db.Column(db.String(20),nullable=False,default='N/A')
     link=db.Column(db.Text,nullable=True)
     tags=db.Column(db.Text,nullable=True)
     content=db.Column(db.Text,nullable=False)
@@ -54,12 +53,11 @@ def projects(id):
 def posts():
     if request.method=='POST':
         post_title=request.form['title']
-        post_author=request.form['author']
         post_link=request.form['link']
         post_tags=request.form['tags']
         post_content=request.form['content']
         
-        new_post= BlogPost(title=post_title,content=post_content,author=post_author,link=post_link,tags=post_tags)
+        new_post= BlogPost(title=post_title,content=post_content,link=post_link,tags=post_tags)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
@@ -79,7 +77,6 @@ def edit(id):
     post=BlogPost.query.get_or_404(id)
     if request.method=='POST':
         post.title=request.form['title']
-        post.author=request.form['author']
         post.link=request.form['link']
         post.tags=request.form['tags']
         post.content=request.form['content']
