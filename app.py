@@ -80,6 +80,9 @@ def edit(id):
     if request.method=='POST':
         post.title=request.form['title']
         post.link=request.form['link']
+
+        
+
         post_tag=Tag(name=request.form['tags'])
         post_tags=[post_tag]
         post.tags=post_tags
