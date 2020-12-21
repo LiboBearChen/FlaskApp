@@ -1,33 +1,34 @@
 from flask import Flask, render_template,request,redirect
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
+from sqlalchemy import Table, Column, Integer, ForeignKey,Date,String,Text
+from sqlalchemy.orm import relationship
+from flask_sqlalchemy import SQLAlchemy
+
 
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
-db=SQLAlchemy(app)
+db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-#database models
-class BlogPost(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    date_posted=db.Column(db.Date,nullable=False,default=datetime.utcnow)
-
-    title=db.Column(db.String(100),nullable=False)
-    link=db.Column(db.Text,nullable=True)
-    tags=db.Column(db.Text,nullable=True)
-    content=db.Column(db.Text,nullable=False)
-
+#database tables
+class Post(db.Model):
+    __tablename__ = 'post'
+    id=Column(Integer,primary_key=True)
+    date_posted=Column(Date,nullable=False,default=datetime.utcnow)
+    title=Column(String(100),nullable=False)
+    link=Column(Text,nullable=True)
+    tags=relationship("Tag")
+    content=Column(Text,nullable=False)
     def __repr__(self):
         return 'Blog Post '+str(self.id)
 
 class Tag(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-
-    name=db.Column(db.String(100),nullable=False)
-    link=db.Column(db.String(1000),nullable=False)
-
+    __tablename__ = 'tag'
+    id=Column(Integer,primary_key=True)
+    name=Column(String(100),nullable=True)
+    post_id = Column(Integer, ForeignKey('post.id'))
     def __repr__(self):
         return 'Tag '+str(self.id)
 
@@ -54,31 +55,34 @@ def posts():
     if request.method=='POST':
         post_title=request.form['title']
         post_link=request.form['link']
-        post_tags=request.form['tags']
+        post_tag=Tag(name=request.form['tags'])
+        post_tags=[post_tag]
         post_content=request.form['content']
         
-        new_post= BlogPost(title=post_title,content=post_content,link=post_link,tags=post_tags)
+        new_post= Post(title=post_title,content=post_content,link=post_link,tags=post_tags)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
     else:
-        all_posts=BlogPost.query.order_by(BlogPost.date_posted).all()
+        all_posts=Post.query.order_by(Post.date_posted).all()
         return render_template('posts.html',posts=all_posts)
 
 @app.route('/posts/delete/<int:id>')
 def delete(id):
-    post=BlogPost.query.get_or_404(id)
+    post=Post.query.get_or_404(id)
     db.session.delete(post)
     db.session.commit()
     return redirect('/posts')
 
 @app.route('/posts/edit/<int:id>',methods=['GET','POST'])
 def edit(id):
-    post=BlogPost.query.get_or_404(id)
+    post=Post.query.get_or_404(id)
     if request.method=='POST':
         post.title=request.form['title']
         post.link=request.form['link']
-        post.tags=request.form['tags']
+        post_tag=Tag(name=request.form['tags'])
+        post_tags=[post_tag]
+        post.tags=post_tags
         post.content=request.form['content']
         
         db.session.commit()
