@@ -1,35 +1,39 @@
 from flask import Flask, render_template,request,redirect
 from datetime import datetime
 from flask_migrate import Migrate
-from sqlalchemy import Table, Column, Integer, ForeignKey,Date,String,Text
-from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 
 
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost:3306/liboblog'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 #database tables
+post_tag = db.Table('post_tag',
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id'))
+)
+
 class Post(db.Model):
     __tablename__ = 'post'
-    id=Column(Integer,primary_key=True)
-    date_posted=Column(Date,nullable=False,default=datetime.utcnow)
-    title=Column(String(100),nullable=False)
-    link=Column(Text,nullable=True)
-    tagsString=Column(String(200),nullable=True)
-    tags=relationship("Tag")
-    content=Column(Text,nullable=False)
+    id=db.Column(db.Integer,primary_key=True)
+    date_posted=db.Column(db.Date,nullable=False,default=datetime.utcnow)
+    title=db.Column(db.String(100),nullable=False)
+    link=db.Column(db.Text,nullable=True)
+    tagsString=db.Column(db.String(200),nullable=True)
+    tags = db.relationship('Tag', secondary=post_tag, backref=db.backref('posts', lazy='dynamic'))
+    content=db.Column(db.Text,nullable=False)
     def __repr__(self):
         return 'Blog Post '+str(self.id)
 
 class Tag(db.Model):
     __tablename__ = 'tag'
-    id=Column(Integer,primary_key=True)
-    name=Column(String(100),nullable=True)
-    post_id = Column(Integer, ForeignKey('post.id'))
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(100),nullable=True)
     def __repr__(self):
         return 'Tag '+str(self.id)
 
