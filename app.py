@@ -19,6 +19,7 @@ class Post(db.Model):
     date_posted=Column(Date,nullable=False,default=datetime.utcnow)
     title=Column(String(100),nullable=False)
     link=Column(Text,nullable=True)
+    tagsString=Column(String(200),nullable=True)
     tags=relationship("Tag")
     content=Column(Text,nullable=False)
     def __repr__(self):
@@ -55,17 +56,24 @@ def posts():
     if request.method=='POST':
         post_title=request.form['title']
         post_link=request.form['link']
-        post_tag=Tag(name=request.form['tags'])
-        post_tags=[post_tag]
+
+        #get tags from a string
+        post_tagsString=request.form['tags']
+        tagsList=post_tagsString.split(',')
+        post_tags=[]
+        for tag in tagsList:
+            post_tag=Tag(name=tag)
+            post_tags.append(post_tag)
         post_content=request.form['content']
         
-        new_post= Post(title=post_title,content=post_content,link=post_link,tags=post_tags)
+        new_post= Post(title=post_title,content=post_content,link=post_link,tags=post_tags,tagsString=post_tagsString)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
     else:
         all_posts=Post.query.order_by(Post.date_posted).all()
-        return render_template('posts.html',posts=all_posts)
+        all_tags=Tag.query.order_by(Tag.name).all()
+        return render_template('posts.html',posts=all_posts,tags=all_tags)
 
 @app.route('/posts/delete/<int:id>')
 def delete(id):
@@ -80,14 +88,14 @@ def edit(id):
     if request.method=='POST':
         post.title=request.form['title']
         post.link=request.form['link']
-
-        
-
-        post_tag=Tag(name=request.form['tags'])
-        post_tags=[post_tag]
-        post.tags=post_tags
+        #get tags from a string
+        post.tagsString=request.form['tags']
+        tagsList=post.tagsString.split(',')
+        post.tags.clear()
+        for tag in tagsList:
+            post_tag=Tag(name=tag)
+            post.tags.append(post_tag)
         post.content=request.form['content']
-        
         db.session.commit()
         return redirect('/posts')
     else:
