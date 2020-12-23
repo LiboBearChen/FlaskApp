@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql:///posts.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost:3306/liboblog'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
@@ -33,7 +32,7 @@ class Post(db.Model):
 class Tag(db.Model):
     __tablename__ = 'tag'
     id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(100),nullable=True)
+    name=db.Column(db.String(100),nullable=True,unique=True)
     def __repr__(self):
         return 'Tag '+str(self.id)
 
