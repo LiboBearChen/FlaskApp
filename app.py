@@ -33,6 +33,22 @@ class Tag(db.Model):
     __tablename__ = 'tag'
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(100),nullable=True,unique=True)
+
+    @classmethod
+    def get_unique(cls, name):
+        cache = db.session._unique_cache = getattr(db.session, '_unique_cache', {})
+        key = (cls, name)
+        tag = cache.get(key)
+        #check uncommitted data in cache
+        if tag is None:
+            tag = db.session.query(cls).filter_by(name=name).first()
+            #check committed data in database
+            if tag is None:
+                tag = cls(name=name)
+                db.session.add(tag)
+            cache[key] = tag
+        return tag
+    
     def __repr__(self):
         return 'Tag '+str(self.id)
 
