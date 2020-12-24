@@ -89,12 +89,15 @@ def posts():
 @app.route('/posts/delete/<int:id>')
 def delete(id):
     post=Post.query.get_or_404(id)
+    #store tags used by the post after deleted
+    associate_tags  = Tag.query.join(post_tag).join(Post).filter((post_tag.c.post_id == id)).all()
     db.session.delete(post)
     db.session.commit()
     #delete tags that are no longer used by any post
-    remain_tag = Post.query.join(post_tag).join(Tag).filter((post_tag.c.post_id == id)).first()
-    if remain_tag is None: 
-        db.session.delete(post)
+    for tag in associate_tags :
+        remain_tag=Tag.query.join(post_tag).join(Post).filter((post_tag.c.tag_id == tag.id)).first()
+        if remain_tag is None: 
+            db.session.delete(tag)
     db.session.commit()
     return redirect('/posts')
 
