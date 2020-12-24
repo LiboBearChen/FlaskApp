@@ -24,7 +24,7 @@ class Post(db.Model):
     title=db.Column(db.String(100),nullable=False)
     link=db.Column(db.Text,nullable=True)
     tagsString=db.Column(db.String(200),nullable=True)
-    tags = db.relationship('Tag', secondary=post_tag, backref=db.backref('posts', lazy='dynamic'))
+    tags = db.relationship('Tag', secondary=post_tag, backref=db.backref('posts', lazy='joined'))
     content=db.Column(db.Text,nullable=False)
     def __repr__(self):
         return 'Blog Post '+str(self.id)
@@ -36,17 +36,11 @@ class Tag(db.Model):
 
     @classmethod
     def get_unique(cls, name):
-        cache = db.session._unique_cache = getattr(db.session, '_unique_cache', {})
-        key = (cls, name)
-        tag = cache.get(key)
-        #check uncommitted data in cache
+        #check committed data in database
+        tag = db.session.query(cls).filter_by(name=name).first()
         if tag is None:
-            tag = db.session.query(cls).filter_by(name=name).first()
-            #check committed data in database
-            if tag is None:
-                tag = cls(name=name)
-                db.session.add(tag)
-            cache[key] = tag
+            tag = cls(name=name)
+            return tag
         return tag
     
     def __repr__(self):
@@ -75,16 +69,14 @@ def posts():
     if request.method=='POST':
         post_title=request.form['title']
         post_link=request.form['link']
-
         #get tags from a string
         post_tagsString=request.form['tags']
         tagsList=post_tagsString.split(',')
         post_tags=[]
         for tag in tagsList:
-            post_tag=Tag(name=tag)
+            post_tag=Tag.get_unique(tag)
             post_tags.append(post_tag)
         post_content=request.form['content']
-        
         new_post= Post(title=post_title,content=post_content,link=post_link,tags=post_tags,tagsString=post_tagsString)
         db.session.add(new_post)
         db.session.commit()
@@ -99,6 +91,11 @@ def delete(id):
     post=Post.query.get_or_404(id)
     db.session.delete(post)
     db.session.commit()
+    #delete tags that are no longer used by any post
+    remain_tag = Post.query.join(post_tag).join(Tag).filter((post_tag.c.post_id == id)).first()
+    if remain_tag is None: 
+        db.session.delete(post)
+    db.session.commit()
     return redirect('/posts')
 
 @app.route('/posts/edit/<int:id>',methods=['GET','POST'])
@@ -112,7 +109,7 @@ def edit(id):
         tagsList=post.tagsString.split(',')
         post.tags.clear()
         for tag in tagsList:
-            post_tag=Tag(name=tag)
+            post_tag=Tag.get_unique(tag)
             post.tags.append(post_tag)
         post.content=request.form['content']
         db.session.commit()
