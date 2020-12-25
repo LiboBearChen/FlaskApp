@@ -64,8 +64,8 @@ def stacks():
 def projects(id):
     return render_template('projects.html')
 
-@app.route('/posts',methods=['GET','POST'])
-def posts():
+@app.route('/posts/<int:id>',methods=['GET','POST'])
+def posts(id):
     if request.method=='POST':
         post_title=request.form['title']
         post_link=request.form['link']
@@ -74,15 +74,18 @@ def posts():
         tagsList=post_tagsString.split(',')
         post_tags=[]
         for tag in tagsList:
-            post_tag=Tag.get_unique(tag)
-            post_tags.append(post_tag)
+            postTag=Tag.get_unique(tag)
+            post_tags.append(postTag)
         post_content=request.form['content']
         new_post= Post(title=post_title,content=post_content,link=post_link,tags=post_tags,tagsString=post_tagsString)
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/posts')
+        return redirect('/posts/0')
     else:
-        all_posts=Post.query.order_by(Post.date_posted).all()
+        if id==0:
+            all_posts=Post.query.order_by(Post.date_posted).all()
+        else:
+            all_posts = Post.query.join(post_tag).join(Tag).filter((post_tag.c.tag_id == id)).all()
         all_tags=Tag.query.order_by(Tag.name).all()
         return render_template('posts.html',posts=all_posts,tags=all_tags)
 
@@ -99,7 +102,7 @@ def delete(id):
         if remain_tag is None: 
             db.session.delete(tag)
     db.session.commit()
-    return redirect('/posts')
+    return redirect('/posts/0')
 
 @app.route('/posts/edit/<int:id>',methods=['GET','POST'])
 def edit(id):
@@ -116,7 +119,7 @@ def edit(id):
             post.tags.append(post_tag)
         post.content=request.form['content']
         db.session.commit()
-        return redirect('/posts')
+        return redirect('/posts/0')
     else:
         return render_template('edit.html',post=post)
 

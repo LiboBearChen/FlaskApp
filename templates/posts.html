@@ -13,9 +13,10 @@
 <a class="btn btn-success float-right" href="/posts/new">+ New Post</a>
 <br>
 <hr>
-All Tags:
+<a class="tag" href="/posts/0" id=0>All Tags</a>
+<span><strong>:</strong></span>
 {% for tag in tags %}
-<a class="tag" href="#" id="{{tag.id}}">{{tag.name}}</a>
+<a class="tag" href="/posts/{{tag.id}}" id="{{tag.id}}">{{tag.name}}</a>
 {% endfor %}
 <hr>
 <div id="postsContainer">
@@ -28,7 +29,7 @@ All Tags:
 {% endif %}
 <br>
 {% for tag in post.tags %}
-<a class="tag" href="#" id="{{tag.id}}"><small>{{tag.name}}</small></a>
+<a class="tag" href="/posts/{{tag.id}}" id="{{tag.id}}"><small>{{tag.name}}</small></a>
 {% endfor %}
 <br>
 <br>
@@ -42,6 +43,6 @@ All Tags:
 {% endblock %}
 
 {% block bodyScript %}
-<script> let posts = '{{ posts }}'</script>
+<!-- <script> var posts = JSON.parse("{{ posts }}"); </script> -->
 <script src="{{url_for('static',filename='js/posts.js')}}"></script>
 {% endblock %}
