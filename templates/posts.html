@@ -3,7 +3,6 @@
 {% block head %}
 <title>Posts</title>
 <link rel="stylesheet" href="{{url_for('static',filename='css/posts.css')}}">
-
 {% endblock %}
 
 
@@ -13,10 +12,18 @@
 <a class="btn btn-success float-right" href="/posts/new">+ New Post</a>
 <br>
 <hr>
+{% if 0==tag_id %}
+<a class="tag active" href="/posts/0" id=0>All Tags</a>
+{% else %}
 <a class="tag" href="/posts/0" id=0>All Tags</a>
+{% endif %}
 <span><strong>:</strong></span>
 {% for tag in tags %}
+{% if tag.id==tag_id %}
+<a class="tag active" href="/posts/{{tag.id}}" id="{{tag.id}}">{{tag.name}}</a>
+{% else %}
 <a class="tag" href="/posts/{{tag.id}}" id="{{tag.id}}">{{tag.name}}</a>
+{% endif %}
 {% endfor %}
 <hr>
 <div id="postsContainer">
@@ -29,7 +36,11 @@
 {% endif %}
 <br>
 {% for tag in post.tags %}
+{% if tag.id==tag_id %}
+<a class="tag active" href="/posts/{{tag.id}}" id="{{tag.id}}"><small>{{tag.name}}</small></a>
+{% else %}
 <a class="tag" href="/posts/{{tag.id}}" id="{{tag.id}}"><small>{{tag.name}}</small></a>
+{% endif %}
 {% endfor %}
 <br>
 <br>

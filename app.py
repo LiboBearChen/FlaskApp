@@ -87,7 +87,7 @@ def posts(id):
         else:
             all_posts = Post.query.join(post_tag).join(Tag).filter((post_tag.c.tag_id == id)).all()
         all_tags=Tag.query.order_by(Tag.name).all()
-        return render_template('posts.html',posts=all_posts,tags=all_tags)
+        return render_template('posts.html',posts=all_posts,tags=all_tags,tag_id=id)
 
 @app.route('/posts/delete/<int:id>')
 def delete(id):

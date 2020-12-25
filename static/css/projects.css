@@ -9,24 +9,13 @@ div.orgChart div.node {
 
 /* all boxes show white when hovered */
 
-div.orgChart div.node:hover {
+div.orgChart div.node:hover,
+div.orgChart div.node.level1:hover,
+div.orgChart div.node.level2:hover,
+div.orgChart div.node.level3:hover,
+div.orgChart div.node.level4:hover{
     background-color: white;
-}
-
-div.orgChart div.node.level1:hover {
-    background-color: white;
-}
-
-div.orgChart div.node.level2:hover {
-    background-color: white;
-}
-
-div.orgChart div.node.level3:hover {
-    background-color: white;
-}
-
-div.orgChart div.node.level4:hover {
-    background-color: white;
+    font-size: larger;
 }
 
 /* set different colors by box levels */
@@ -45,4 +34,24 @@ div.orgChart div.node.level3 {
 
 div.orgChart div.node.level4 {
     background-color: #84c2d1;
+}
+
+/* styles nav pills */
+.nav-pills{
+    background-color: rgb(168, 0, 0);
+}
+.nav-pills a{
+    color: white;
+    height: 50px;
+    width: 400px;
+    padding-left:  8px;
+    padding-right:  8px;
+    padding-top: 3px;
+    
+}
+.nav-pills a:hover,
+.nav-pills .active {
+    background-color: red;
+    text-decoration: none;
+    color: white;
 }

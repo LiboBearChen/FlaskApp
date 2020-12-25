@@ -2,7 +2,6 @@
 
 {% block head %}
 <title>Projects</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.css"
   integrity="sha512-MkxwpMK+fg4ZkEZ/LhvriDh1e1Iq42gy09IEu2uyYIbVALpEh1L9GnlQ6Mb2h+8XcZvo2R5Rwd5MmkI3CUFKCQ=="
   crossorigin="anonymous" />
@@ -18,28 +17,28 @@
 <br>
 <div class="row">
   <div class="col-3">
-    <div class="nav flex-column nav-pills" id="tabs">
-      <a class="nav-link active" data-toggle="pill" href="#content0" style="display: none;" id="tab0"></a>
-      <a class="nav-link" data-toggle="pill" href="#content1" id="tab1">Stock market analysis website</a>
-      <a class="nav-link" data-toggle="pill" href="#content2" id="tab2">Webpage analysis chrome extension</a>
-      <a class="nav-link" data-toggle="pill" href="#content3" id="tab3">Digital product shopping website</a>
-      <a class="nav-link" data-toggle="pill" href="#content4" id="tab4">Coding blog (this website)</a>
+    <div class="nav nav-pills nav-stacked" id="tabs">
+      <a  data-toggle="pill" href="#content0" style="display: none;" id="tab0"></a>
+      <a  data-toggle="pill" href="#content1" id="tab1">Stock market analysis website</a>
+      <a  data-toggle="pill" href="#content2" id="tab2">Webpage analysis chrome extension</a>
+      <a  data-toggle="pill" href="#content3" id="tab3">Digital product shopping website</a>
+      <a  data-toggle="pill" href="#content4" id="tab4">Coding blog (this website)</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="contents">
-      <div class="tab-pane" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
+      <div class="tab-pane fade in active" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
         the left pane.</div>
-      <div class="tab-pane" id="content1">
+      <div class="tab-pane fade" id="content1">
         {% include 'projects/project1.html' %}
       </div>
-      <div class="tab-pane" id="content2">
+      <div class="tab-pane fade" id="content2">
         {% include 'projects/project2.html' %}
       </div>
-      <div class="tab-pane" id="content3">
+      <div class="tab-pane fade" id="content3">
         {% include 'projects/project3.html' %}
       </div>
-      <div class="tab-pane" id="content4">
+      <div class="tab-pane fade" id="content4">
         {% include 'projects/project4.html' %}
       </div>
     </div>
@@ -48,7 +47,7 @@
 {% endblock %}
 
 {% block bodyScript %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.min.js"
   integrity="sha512-kevYqUwQJ8zo36Zjbn+6+nIF/zLV4K5XYIhuxIrBx4RiRlpRUKi5tRp7Sjd47FPnIFYPVX9LbKBm6hZLF1fi1A=="
   crossorigin="anonymous"></script>
