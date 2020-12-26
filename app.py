@@ -89,11 +89,11 @@ def posts(id):
         all_tags=Tag.query.order_by(Tag.name).all()
         return render_template('posts.html',posts=all_posts,tags=all_tags,tag_id=id)
 
-@app.route('/posts/delete/<int:id>')
-def delete(id):
-    post=Post.query.get_or_404(id)
+@app.route('/posts/delete/<int:post_id>/<int:tag_id>')
+def delete(post_id,tag_id):
+    post=Post.query.get_or_404(post_id)
     #store tags used by the post after deleted
-    associate_tags  = Tag.query.join(post_tag).join(Post).filter((post_tag.c.post_id == id)).all()
+    associate_tags  = Tag.query.join(post_tag).join(Post).filter((post_tag.c.post_id == post_id)).all()
     db.session.delete(post)
     db.session.commit()
     #delete tags that are no longer used by any post
@@ -102,11 +102,11 @@ def delete(id):
         if remain_tag is None: 
             db.session.delete(tag)
     db.session.commit()
-    return redirect('/posts/0')
+    return redirect("/posts/{{tag_id}}")
 
-@app.route('/posts/edit/<int:id>',methods=['GET','POST'])
-def edit(id):
-    post=Post.query.get_or_404(id)
+@app.route('/posts/edit/<int:post_id>/<int:tag_id>',methods=['GET','POST'])
+def edit(post_id,tag_id):
+    post=Post.query.get_or_404(post_id)
     if request.method=='POST':
         post.title=request.form['title']
         post.link=request.form['link']
@@ -119,7 +119,7 @@ def edit(id):
             post.tags.append(post_tag)
         post.content=request.form['content']
         db.session.commit()
-        return redirect('/posts/0')
+        return redirect('/posts/tag_id')
     else:
         return render_template('edit.html',post=post)
 
