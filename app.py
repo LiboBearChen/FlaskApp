@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect
+from flask import Flask, render_template,request,redirect, url_for
 from datetime import datetime
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -64,8 +64,8 @@ def stacks():
 def projects(id):
     return render_template('projects.html')
 
-@app.route('/posts/<int:id>',methods=['GET','POST'])
-def posts(id):
+@app.route('/posts/<int:tag_id>',methods=['GET','POST'])
+def posts(tag_id):
     if request.method=='POST':
         post_title=request.form['title']
         post_link=request.form['link']
@@ -82,12 +82,12 @@ def posts(id):
         db.session.commit()
         return redirect('/posts/0')
     else:
-        if id==0:
+        if tag_id==0:
             all_posts=Post.query.order_by(Post.date_posted).all()
         else:
-            all_posts = Post.query.join(post_tag).join(Tag).filter((post_tag.c.tag_id == id)).all()
+            all_posts = Post.query.join(post_tag).join(Tag).filter((post_tag.c.tag_id == tag_id)).all()
         all_tags=Tag.query.order_by(Tag.name).all()
-        return render_template('posts.html',posts=all_posts,tags=all_tags,tag_id=id)
+        return render_template('posts.html',posts=all_posts,tags=all_tags,tag_id=tag_id)
 
 @app.route('/posts/delete/<int:post_id>/<int:tag_id>')
 def delete(post_id,tag_id):
@@ -102,7 +102,7 @@ def delete(post_id,tag_id):
         if remain_tag is None: 
             db.session.delete(tag)
     db.session.commit()
-    return redirect("/posts/{{tag_id}}")
+    return redirect(url_for('posts',tag_id = tag_id))
 
 @app.route('/posts/edit/<int:post_id>/<int:tag_id>',methods=['GET','POST'])
 def edit(post_id,tag_id):
@@ -119,9 +119,9 @@ def edit(post_id,tag_id):
             post.tags.append(post_tag)
         post.content=request.form['content']
         db.session.commit()
-        return redirect('/posts/tag_id')
+        return redirect(url_for('posts',tag_id = tag_id))
     else:
-        return render_template('edit.html',post=post)
+        return render_template('edit.html',post=post,tag_id=tag_id)
 
 @app.route('/home/users/<string:name>/posts/<int:id>')
 def hello(name,id):
