@@ -55,3 +55,10 @@ div.orgChart div.node.level4 {
     text-decoration: none;
     color: white;
 }
+
+.brief{
+    text-align: initial;
+    background-color: rgb(223, 223, 223);
+    font-size: large;
+    padding: 10px;
+}
