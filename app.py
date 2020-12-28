@@ -24,11 +24,11 @@ class Post(db.Model):
     __tablename__ = 'post'
     id=db.Column(db.Integer,primary_key=True)
     date_posted=db.Column(db.Date,nullable=False,default=datetime.utcnow)
-    title=db.Column(db.String(100),nullable=False)
+    title=db.Column(db.String(100),nullable=True)
     link=db.Column(db.Text,nullable=True)
     tagsString=db.Column(db.String(200),nullable=True)
     tags = db.relationship('Tag', secondary=post_tag, backref=db.backref('posts', lazy='joined'))
-    content=db.Column(db.Text,nullable=False)
+    content=db.Column(db.Text,nullable=True)
     def __repr__(self):
         return 'Blog Post '+str(self.id)
 
