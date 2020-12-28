@@ -5,9 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
-app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost:3306/liboblog'
-app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app=Flask(__name__,
+            template_folder="templates"
+
+)
+app.config.from_object('config.settings')
+app.config.from_pyfile('settings.py', silent=True)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
