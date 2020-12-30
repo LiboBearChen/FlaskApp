@@ -4,23 +4,23 @@ from blueprints.post.models import db,Post,Tag
 page = Blueprint('page', __name__, template_folder='templates')
 
 #app routes
-@app.route('/')
+@page.route('/')
 def index():
     return render_template('page/index.html')
 
-@app.route('/contacts')
+@page.route('/contacts')
 def contacts():
     return render_template('page/contacts.html')
 
-@app.route('/stacks')
+@page.route('/stacks')
 def stacks():
     return render_template('page/stacks.html')
 
-@app.route('/projects/<int:id>')
+@page.route('/projects/<int:id>')
 def projects(id):
     return render_template('page/projects.html')
 
-@app.route('/posts/<int:tag_id>',methods=['GET','POST'])
+@page.route('/posts/<int:tag_id>',methods=['GET','POST'])
 def posts(tag_id):
     if request.method=='POST':
         post_title=request.form['title']
@@ -45,7 +45,7 @@ def posts(tag_id):
         all_tags=Tag.query.order_by(Tag.name).all()
         return render_template('page/posts.html',posts=all_posts,tags=all_tags,tag_id=tag_id)
 
-@app.route('/posts/delete/<int:post_id>/<int:tag_id>')
+@page.route('/posts/delete/<int:post_id>/<int:tag_id>')
 def delete(post_id,tag_id):
     post=Post.query.get_or_404(post_id)
     #store tags used by the post after deleted
@@ -60,7 +60,7 @@ def delete(post_id,tag_id):
     db.session.commit()
     return redirect(url_for('posts',tag_id = tag_id))
 
-@app.route('/posts/edit/<int:post_id>/<int:tag_id>',methods=['GET','POST'])
+@page.route('/posts/edit/<int:post_id>/<int:tag_id>',methods=['GET','POST'])
 def edit(post_id,tag_id):
     post=Post.query.get_or_404(post_id)
     if request.method=='POST':
@@ -79,7 +79,7 @@ def edit(post_id,tag_id):
     else:
         return render_template('page/edit.html',post=post,tag_id=tag_id)
 
-@app.route('/posts/new')
+@page.route('/posts/new')
 def new_post():
     return render_template('page/new_post.html')
 

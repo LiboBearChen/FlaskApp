@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 
 {% block head %}
 <title>Projects</title>
@@ -30,16 +30,16 @@
       <div class="tab-pane fade" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
         the left pane.</div>
       <div class="tab-pane fade" id="content1">
-        {% include 'projects/project1.html' %}
+        {% include 'page_parts/projects_parts/project1.html' %}
       </div>
       <div class="tab-pane fade" id="content2">
-        {% include 'projects/project2.html' %}
+        {% include 'page_parts/projects_parts/project2.html' %}
       </div>
       <div class="tab-pane fade" id="content3">
-        {% include 'projects/project3.html' %}
+        {% include 'page_parts/projects_parts/project3.html' %}
       </div>
       <div class="tab-pane fade" id="content4">
-        {% include 'projects/project4.html' %}
+        {% include 'page_parts/projects_parts/project4.html' %}
       </div>
     </div>
   </div>
