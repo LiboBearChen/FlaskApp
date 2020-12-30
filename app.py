@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprints.page import page
+from blog.blueprints.page import page
 
 app=Flask(__name__)
 app.config.from_object('config.settings')

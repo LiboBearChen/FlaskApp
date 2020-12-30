@@ -1,5 +1,5 @@
 from flask import render_template,request,redirect, url_for,Blueprint
-from blueprints.post.models import db,Post,Tag
+from blog.blueprints.post.models import db,Post,Tag
 
 page = Blueprint('page', __name__, template_folder='templates')
 

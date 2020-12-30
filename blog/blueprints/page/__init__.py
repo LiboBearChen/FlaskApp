@@ -1,0 +1,1 @@
+from blog.blueprints.page.routes import page
