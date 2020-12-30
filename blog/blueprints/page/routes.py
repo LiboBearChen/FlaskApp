@@ -1,5 +1,5 @@
 from flask import render_template,request,redirect, url_for,Blueprint
-from blog.blueprints.post.models import db,Post,Tag
+from blog.blueprints.post.models import db,Post,Tag,post_tag
 
 page = Blueprint('page', __name__, template_folder='templates')
 
@@ -58,7 +58,7 @@ def delete(post_id,tag_id):
         if remain_tag is None: 
             db.session.delete(tag)
     db.session.commit()
-    return redirect(url_for('posts',tag_id = tag_id))
+    return redirect(url_for('page.posts',tag_id = tag_id))
 
 @page.route('/posts/edit/<int:post_id>/<int:tag_id>',methods=['GET','POST'])
 def edit(post_id,tag_id):
@@ -75,7 +75,7 @@ def edit(post_id,tag_id):
             post.tags.append(post_tag)
         post.content=request.form['content']
         db.session.commit()
-        return redirect(url_for('posts',tag_id = tag_id))
+        return redirect(url_for('page.posts',tag_id = tag_id))
     else:
         return render_template('page/edit.html',post=post,tag_id=tag_id)
 

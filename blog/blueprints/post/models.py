@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
-
-db = SQLAlchemy()
-#migrate = Migrate(app, db)
+from blog.app import app
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 #database tables
 post_tag = db.Table('post_tag',
