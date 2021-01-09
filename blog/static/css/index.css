@@ -10,3 +10,8 @@
 #author:hover{
     background-color: white;
 }
+
+.card-img-top{
+    width: 100%;
+    height: 200px;
+}

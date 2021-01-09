@@ -41,7 +41,7 @@ let exampleArray = [
         { repo: '', path: '' },
         { repo: '', path: '' }
     ],
-    //Flask
+    //Python-Flask
     [
         { repo: 'FlaskApp', path: 'startup.py' },
         { repo: '', path: '' },
