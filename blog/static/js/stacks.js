@@ -1,16 +1,63 @@
 //global variables
-
-
-
 let exampleArray = [
+    //React
     [
-        { repo: 'canvasgame', path: 'index.html' },  //2 pages
-        { repo: 'textreader', path: 'style.css' }
+        { repo: 'stockchart', path: 'src/App.js' },  //2 pages
+        { repo: 'shop', path: 'client/src/components/App.js' }
     ],
+    //React-Redux
     [
-        { repo: 'textreader', path: 'index.html' },
-        { repo: 'canvasgame', path: 'index.js' },
-        { repo: 'stockchart', path: 'package.json' }
+        { repo: 'shop', path: 'client/src/_reducers/user_reducer.js' },
+        { repo: 'shop', path: 'client/src/_actions/user_actions.js' },
+        { repo: '', path: '' }
+    ],
+    //jQuery
+    [
+        { repo: 'FlaskApp', path: 'blog/static/js/stacks.js' },
+        { repo: 'PageAnalyse', path: 'popup.js' },
+        { repo: '', path: '' }
+    ],
+    //Bootstrap
+    [
+        { repo: 'FlaskApp', path: 'blog/blueprints/page/templates/page/index.html' },
+        { repo: 'FlaskApp', path: 'blog/blueprints/page/templates/page/projects.html' },
+        { repo: '', path: '' }
+    ],
+    //Node
+    [
+        { repo: '', path: '' },
+        { repo: '', path: '' },
+        { repo: '', path: '' }
+    ],
+    //Node-Express
+    [
+        { repo: 'shop', path: 'server/index.js' },
+        { repo: '', path: '' },
+        { repo: '', path: '' }
+    ],
+    //Docker
+    [
+        { repo: '', path: '' },
+        { repo: '', path: '' },
+        { repo: '', path: '' }
+    ],
+    //Flask
+    [
+        { repo: 'FlaskApp', path: 'startup.py' },
+        { repo: '', path: '' },
+        { repo: '', path: '' }
+    ],
+    //MongoDB
+    [
+        { repo: 'shop', path: 'server/models/Product.js' },
+        { repo: 'shop', path: 'server/routes/product.js' },
+        { repo: '', path: '' }
+    ],
+    //MySQL
+    [
+        { repo: 'FlaskApp', path: 'blog/blueprints/post/models.py' },
+        { repo: 'FlaskApp', path: 'blog/blueprints/page/routes.py' },
+        { repo: '', path: '' }
     ]
 ]
 
