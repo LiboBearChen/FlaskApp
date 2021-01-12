@@ -8,56 +8,37 @@ let exampleArray = [
     //React-Redux
     [
         { repo: 'shop', path: 'client/src/_reducers/user_reducer.js' },
-        { repo: 'shop', path: 'client/src/_actions/user_actions.js' },
-        { repo: '', path: '' }
+        { repo: 'shop', path: 'client/src/_actions/user_actions.js' }
     ],
     //jQuery
     [
         { repo: 'FlaskApp', path: 'blog/static/js/stacks.js' },
-        { repo: 'PageAnalyse', path: 'popup.js' },
-        { repo: '', path: '' }
+        { repo: 'PageAnalyse', path: 'popup.js' }
     ],
     //Bootstrap
     [
         { repo: 'FlaskApp', path: 'blog/blueprints/page/templates/page/index.html' },
-        { repo: 'FlaskApp', path: 'blog/blueprints/page/templates/page/projects.html' },
-        { repo: '', path: '' }
+        { repo: 'FlaskApp', path: 'blog/blueprints/page/templates/page/projects.html' }
     ],
-    //Node
-    [
-        { repo: '', path: '' },
-        { repo: '', path: '' },
-        { repo: '', path: '' }
-    ],
+    
     //Node-Express
     [
-        { repo: 'shop', path: 'server/index.js' },
-        { repo: '', path: '' },
-        { repo: '', path: '' }
+        { repo: 'shop', path: 'server/index.js' }
     ],
-    //Docker
-    [
-        { repo: '', path: '' },
-        { repo: '', path: '' },
-        { repo: '', path: '' }
-    ],
+    
     //Python-Flask
     [
-        { repo: 'FlaskApp', path: 'startup.py' },
-        { repo: '', path: '' },
-        { repo: '', path: '' }
+        { repo: 'FlaskApp', path: 'startup.py' }
     ],
     //MongoDB
     [
         { repo: 'shop', path: 'server/models/Product.js' },
-        { repo: 'shop', path: 'server/routes/product.js' },
-        { repo: '', path: '' }
+        { repo: 'shop', path: 'server/routes/product.js' }
     ],
     //MySQL
     [
         { repo: 'FlaskApp', path: 'blog/blueprints/post/models.py' },
-        { repo: 'FlaskApp', path: 'blog/blueprints/page/routes.py' },
-        { repo: '', path: '' }
+        { repo: 'FlaskApp', path: 'blog/blueprints/page/routes.py' }
     ]
 ]
 
