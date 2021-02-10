@@ -1,111 +1,105 @@
-{% extends 'layouts/base.html' %}
-
-{% block head %}
+{% extends 'layouts/base.html' %} {% block head %}
 <title>Stacks</title>
-<link rel="stylesheet" href="{{url_for('static',filename='css/stacks.css')}}">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{% endblock %}
-
-{% block body %}
-<br>
+<link rel="stylesheet" href="{{url_for('static',filename='css/stacks.css')}}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+{% endblock %} {% block body %}
+<br />
 <h1>Tech Stacks</h1>
-<br>
-<hr>
-<br>
+<br />
+<hr />
+<br />
 <div class="row">
-
-    <div class="col-3">
-        <h5><strong>Frontend Framework:</strong></h5>
-        <div class="buttonGroup" id="box1">
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="1"> React
-                </label>
-            </div>
-            <div class="row">
+  <div class="col-3">
+    <h5><strong>Frontend Framework:</strong></h5>
+    <div class="buttonGroup" id="box1">
+      <div class="row">
+        <label> <input type="radio" name="stack" value="1" /> React </label>
+      </div>
+      <!-- <div class="row">
                 <label>
                     <input type="radio" name="stack" value="2"> React-Redux
                 </label>
-            </div>
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="3"> jQuery
-                </label>
-            </div>
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="4"> Bootstrap
-                </label>
-            </div>
-        </div>
-        <br>
-        <h5><strong>Backend Solution:</strong></h5>
-        <div class="buttonGroup" id="box2">
-            <!-- <div class="row">
+            </div> -->
+      <div class="row">
+        <label> <input type="radio" name="stack" value="3" /> jQuery </label>
+      </div>
+      <div class="row">
+        <label> <input type="radio" name="stack" value="4" /> Bootstrap </label>
+      </div>
+    </div>
+    <br />
+    <h5><strong>Backend Solution:</strong></h5>
+    <div class="buttonGroup" id="box2">
+      <!-- <div class="row">
                 <label>
                     <input type="radio" name="stack" value="5"> Node
                 </label>
             </div> -->
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="5"> Node-Express
-                </label>
-            </div>
-            <!-- <div class="row">
+      <div class="row">
+        <label>
+          <input type="radio" name="stack" value="5" /> Node-Express
+        </label>
+      </div>
+      <!-- <div class="row">
                 <label>
                     <input type="radio" name="stack" value="7"> Docker
                 </label>
             </div> -->
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="6"> Python-Flask
-                </label>
-            </div>
-        </div>
-        <br>
-        <h5><strong>Database:</strong></h5>
-        <div class="buttonGroup" id="box3">
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="7"> MongoDB
-                </label>
-            </div>
-            <div class="row">
-                <label>
-                    <input type="radio" name="stack" value="8"> MySQL-SQLAlchemy
-                </label>
-            </div>
-        </div>
+      <div class="row">
+        <label>
+          <input type="radio" name="stack" value="6" /> Python-Flask
+        </label>
+      </div>
     </div>
-    <div class="col-9">
-        <div class="card mb-4">
-            <h2 class="card-header" id="fileName">
-                Source Code Example(s):
-                <span id="page"></span>
-                <a class="btn btn-success float-right" id="next"><strong>></strong></a>
-                <a class="btn btn-success float-right mr-2" id="previous"><strong><</strong></a>
-            </h2>
-            <div class="card-header">
-                <span id="repo"></span>
-            </div>
-            <div class="card-body">
-                <div class="displayBox scroll-box" id="fetchContainer">
-                    <br>
-                    <br>
-                    <h3 style="text-align:center;">Please choose one stack from the left radio buttons.</h3>
-                    <br>
-                    <h3 style="text-align:center;">Then change examples by clicking arrow buttons above.</h3>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                <a id="fileLink" target="_blank"></a>
-            </div>
-        </div>
+    <br />
+    <h5><strong>Database:</strong></h5>
+    <div class="buttonGroup" id="box3">
+      <div class="row">
+        <label> <input type="radio" name="stack" value="7" /> MongoDB </label>
+      </div>
+      <div class="row">
+        <label>
+          <input type="radio" name="stack" value="8" /> MySQL-SQLAlchemy
+        </label>
+      </div>
     </div>
+  </div>
+  <div class="col-9">
+    <div class="card mb-4">
+      <h2 class="card-header" id="fileName">
+        Source Code Example(s):
+        <span id="page"></span>
+        <a class="btn btn-success float-right" id="next"><strong>></strong></a>
+        <a class="btn btn-success float-right mr-2" id="previous"
+          ><strong><</strong></a
+        >
+      </h2>
+      <div class="card-header">
+        <span id="repo"></span>
+      </div>
+      <div class="card-body">
+        <div class="displayBox scroll-box" id="fetchContainer">
+          <br />
+          <br />
+          <h3 style="text-align: center">
+            Please choose one stack from the left radio buttons.
+          </h3>
+          <br />
+          <h3 style="text-align: center">
+            Then change examples by clicking arrow buttons above.
+          </h3>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <a id="fileLink" target="_blank"></a>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
-
-{% block bodyScript %}
+{% endblock %} {% block bodyScript %}
 <script src="../static/js/stacks.js"></script>
 {% endblock %}
