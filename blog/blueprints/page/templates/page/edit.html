@@ -1,28 +1,52 @@
-{% extends 'layouts/base.html' %}
-
-{% block head %}
+{% extends 'layouts/base.html' %} {% block head %}
 <title>Edit Post</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <h1>Editing Post</h1>
-<hr>
+<hr />
 <h2>Edit:</h2>
-<form action='/posts/edit/{{post.id}}/{{tag_id}}' method='POST'>
-    <label for="content">Title:</label>
-    <input class="form-control" type="text" name='title' id='title' aria-label="Enter Title" value="{{post.title}}">
-    <br>
-    <label for="link">Link:</label>
-    <input class="form-control" type="text" name='link' id='link' aria-label="Enter Link" value="{{post.link}}">
-    <br>
-    <label for="tags">Tags: (separated by comma)</label>
-    <input class="form-control" type="text" name='tags' id='tags' aria-label="Enter Tags" value="{{post.tagsString}}">
-    <br>
-    <label for="content">Post:</label>
-    <textarea class="form-control" name='content' id="content" aria-label="Enter Content"
-        rows="3">{{post.content}}</textarea>
-    <br>
-    <input type="submit" value="Save">
+<form action="/posts/edit/{{post.id}}/{{tag_id}}" method="POST">
+  <label for="content">Title:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="title"
+    id="title"
+    aria-label="Enter Title"
+    value="{{post.title}}"
+  />
+  <br />
+  <label for="link">Link:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="link"
+    id="link"
+    aria-label="Enter Link"
+    value="{{post.link}}"
+  />
+  <br />
+  <label for="tags">Tags: (separated by comma)</label>
+  <input
+    class="form-control"
+    type="text"
+    name="tags"
+    id="tags"
+    aria-label="Enter Tags"
+    value="{{post.tagsString}}"
+  />
+  <br />
+  <label for="content">Post:</label>
+  <textarea
+    class="form-control"
+    name="content"
+    id="content"
+    aria-label="Enter Content"
+    rows="3"
+  >
+{{post.content}}</textarea
+  >
+  <br />
+  <input type="submit" value="Save" />
 </form>
-<hr>
+<hr />
 {% endblock %}

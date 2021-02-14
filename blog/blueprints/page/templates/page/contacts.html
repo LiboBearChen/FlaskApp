@@ -1,28 +1,52 @@
-{% extends 'layouts/base.html' %}
-
-{% block head %}
+{% extends 'layouts/base.html' %} {% block head %}
 <title>Contacts</title>
-<link rel="stylesheet" href="{{url_for('static',filename='css/contacts.css')}}">
-{% endblock %}
-
-
-{% block body %}
-<br>
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename='css/contacts.css')}}"
+/>
+{% endblock %} {% block body %}
+<br />
 <h1>Contacts</h1>
-<br>
-<hr>
-<br>
-<div id="backPic1" style="text-align:center;">
-    <p><strong>Thank you for visiting this website. My name is Libo Chen studying Computer Programming and Analysis at Fanshawe college. I am looking for a co-op. If you are interested in my programming skills. Please contact me using the folowing links:</strong></p>
-    <br>
-    <br>
-    <br>
-    <p><strong>Email: </strong><a class="contactLink" href="mailto:herrlorenz312@gmail.com">herrlorenz312@gmail.com</a></p>
-    <p><strong>Linkedin: </strong><a class="contactLink" href="https://www.linkedin.com/in/libo-chen-96082a192" target="_blank">https://www.linkedin.com/in/libo-chen-96082a192</a></p>
-    <p><strong>Github: </strong><a class="contactLink" href="https://github.com/LiboBearChen" target="_blank">https://github.com/LiboBearChen</a></p>
+<br />
+<hr />
+<br />
+<div id="backPic1" style="text-align: center">
+  <p>
+    <strong
+      >Thank you for visiting this website. My name is Libo Chen studying
+      Computer Programming and Analysis at Fanshawe college. I am looking for a
+      co-op. If you are interested in my programming skills. Please contact me
+      using the folowing links:</strong
+    >
+  </p>
+  <br />
+  <br />
+  <br />
+  <p>
+    <strong>Email: </strong
+    ><a class="contactLink" href="mailto:herrlorenz312@gmail.com"
+      >herrlorenz312@gmail.com</a
+    >
+  </p>
+  <p>
+    <strong>Linkedin: </strong
+    ><a
+      class="contactLink"
+      href="https://www.linkedin.com/in/libo-chen-96082a192"
+      target="_blank"
+      >https://www.linkedin.com/in/libo-chen-96082a192</a
+    >
+  </p>
+  <p>
+    <strong>Github: </strong
+    ><a
+      class="contactLink"
+      href="https://github.com/LiboBearChen"
+      target="_blank"
+      >https://github.com/LiboBearChen</a
+    >
+  </p>
 </div>
-{% endblock %}
-
-{% block bodyScript %}
+{% endblock %} {% block bodyScript %}
 <script src="{{url_for('static',filename='js/contacts.js')}}"></script>
 {% endblock %}
