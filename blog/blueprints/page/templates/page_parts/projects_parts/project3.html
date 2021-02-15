@@ -1,88 +1,128 @@
-<a class="btn btn-success" target="_blank" href="https://liboshop.herokuapp.com/">View Project →</a>
-<a class="btn btn-info float-right" target="_blank" href="https://github.com/LiboBearChen/shop">View Source on GitHub
-    →</a>
-<div style="text-align:center">
-    <br>
-    <br>
-    <br>
-    <h4><strong>Brief</strong></h4>
-    <div class="brief">
-        <p>
-            This is an E-commerce website selling downloadable digital products. A Paypal button is integrated for the payment. ReactJS is used as the frontend framework while ExpressJS works as the backend framework. The website connects with Mongo DB (through Mongoose) as the remote database server (see the source code for this logic <a href="https://github.com/LiboBearChen/shop/tree/master/server/routes" target="_blank"><strong>here</strong></a>). 
-        </p>
-        <p>
-            The project consists of client-side and server-side. Redux is used on the client-side for managing user states (see the source code for this logic <a href="https://github.com/LiboBearChen/shop/tree/master/client/src/_reducers" target="_blank"><strong>here</strong></a>). Models for payments, products, and users are built on the server-side (see the source code for this logic <a href="https://github.com/LiboBearChen/shop/tree/master/server/models" target="_blank"><strong>here</strong></a>).
-        </p>
-        <p>
-            This is a complex project and many details are being improved. Although it has been deployed, errors may occur when browsing the website.
-        </p>
-    </div>
-    <br>
-    <br>
-    <br>
-    <h4><strong>Logic Structure</strong></h4>
-    <div id="chartContainer3">
-        <ul id="chart3">
-            <li>shop
+<a
+  class="btn btn-success"
+  target="_blank"
+  href="https://liboshop.herokuapp.com/"
+  >View Project →</a
+>
+<a
+  class="btn btn-info float-right"
+  target="_blank"
+  href="https://github.com/LiboBearChen/shop"
+  >View Source on GitHub →</a
+>
+<div style="text-align: center">
+  <br />
+  <br />
+  <br />
+  <h4><strong>Brief</strong></h4>
+  <div class="brief">
+    <p>
+      This is an E-commerce website selling downloadable digital products. A
+      Paypal button is integrated for the payment. ReactJS is used as the
+      frontend framework while ExpressJS works as the backend framework. The
+      website connects with Mongo DB (through Mongoose) as the remote database
+      server (see the source code for this logic
+      <a
+        href="https://github.com/LiboBearChen/shop/tree/master/server/routes"
+        target="_blank"
+        ><strong>here</strong></a
+      >).
+    </p>
+    <p>
+      The project consists of client-side and server-side. Redux is used on the
+      client-side for managing user states (see the source code for this logic
+      <a
+        href="https://github.com/LiboBearChen/shop/tree/master/client/src/_reducers"
+        target="_blank"
+        ><strong>here</strong></a
+      >). Models for payments, products, and users are built on the server-side
+      (see the source code for this logic
+      <a
+        href="https://github.com/LiboBearChen/shop/tree/master/server/models"
+        target="_blank"
+        ><strong>here</strong></a
+      >).
+    </p>
+    <p>
+      This is a complex project and many details are being improved. Although it
+      has been deployed, errors may occur when browsing the website.
+    </p>
+  </div>
+  <br />
+  <br />
+  <br />
+  <h4><strong>Logic Structure</strong></h4>
+  <div id="chartContainer3">
+    <ul id="chart3">
+      <li>
+        shop
+        <ul>
+          <li>
+            client
+            <ul>
+              <li>
+                actions
                 <ul>
-                    <li>client
-                        <ul>
-                            <li>actions
-                                <ul>
-                                    <li>types</li>
-                                    <li>user actions</li>
-                                </ul>
-                            </li>
-                            <li>reducers
-                                <ul>
-                                    <li>user reducer</li>
-                                </ul>
-                            </li>
-                            <li>components
-                                <ul>
-                                    <li>utils
-                                        <ul>
-                                            <li>file upload</li>
-                                            <li>image slider</li>
-                                            <li>paypal</li>
-                                            <li>render cart image</li>
-                                        </ul>
-                                    </li>
-                                    <li>views
-                                        <ul>
-                                            <li>about page</li>
-                                            <li>cart page</li>
-                                            <li>detail product page</li>
-                                            <li>footer</li>
-                                            <li>history page</li>
-                                            <li>landing page</li>
-                                            <li>login page</li>
-                                            <li>navbar</li>
-                                            <li>register page</li>
-                                            <li>upload product page</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>server
-                        <ul>
-                            <li>models
-                                <ul>
-                                    <li>payment</li>
-                                    <li>product</li>
-                                    <li>user</li>
-                                </ul>
-                            </li>
-
-                            <li>routes</li>
-                            <li>product</li>
-                            <li>users</li>
-                        </ul>
-                    </li>
+                  <li>types</li>
+                  <li>user actions</li>
                 </ul>
-            </li>
+              </li>
+              <li>
+                reducers
+                <ul>
+                  <li>user reducer</li>
+                </ul>
+              </li>
+              <li>
+                components
+                <ul>
+                  <li>
+                    utils
+                    <ul>
+                      <li>file upload</li>
+                      <li>image slider</li>
+                      <li>paypal</li>
+                      <li>render cart image</li>
+                    </ul>
+                  </li>
+                  <li>
+                    views
+                    <ul>
+                      <li>about page</li>
+                      <li>cart page</li>
+                      <li>detail product page</li>
+                      <li>footer</li>
+                      <li>history page</li>
+                      <li>landing page</li>
+                      <li>login page</li>
+                      <li>navbar</li>
+                      <li>register page</li>
+                      <li>upload product page</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            server
+            <ul>
+              <li>
+                models
+                <ul>
+                  <li>payment</li>
+                  <li>product</li>
+                  <li>user</li>
+                </ul>
+              </li>
+
+              <li>routes</li>
+              <li>product</li>
+              <li>users</li>
+            </ul>
+          </li>
         </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 </div>

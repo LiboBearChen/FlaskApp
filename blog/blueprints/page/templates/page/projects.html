@@ -1,34 +1,49 @@
-{% extends 'layouts/base.html' %}
-
-{% block head %}
+{% extends 'layouts/base.html' %} {% block head %}
 <title>Projects</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.css"
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.css"
   integrity="sha512-MkxwpMK+fg4ZkEZ/LhvriDh1e1Iq42gy09IEu2uyYIbVALpEh1L9GnlQ6Mb2h+8XcZvo2R5Rwd5MmkI3CUFKCQ=="
-  crossorigin="anonymous" />
-<link rel="stylesheet" href="{{url_for('static',filename='css/projects.css')}}">
-{% endblock %}
-
-
-{% block body %}
-<br>
+  crossorigin="anonymous"
+/>
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename='css/projects.css')}}"
+/>
+{% endblock %} {% block body %}
+<br />
 <h1>All Projects</h1>
-<br>
-<hr>
-<br>
+<br />
+<hr />
+<br />
 <div class="row">
   <div class="col-3">
     <div class="nav nav-pills nav-stacked" id="tabs">
-      <a  data-toggle="pill" href="#content0" style="display: none;" id="tab0"></a>
-      <a  data-toggle="pill" href="#content1" id="tab1">Stock market analysis website</a>
-      <a  data-toggle="pill" href="#content2" id="tab2">Webpage analysis chrome extension</a>
-      <a  data-toggle="pill" href="#content3" id="tab3">Digital product shopping website</a>
-      <a  data-toggle="pill" href="#content4" id="tab4">Coding blog (this website)</a>
+      <a
+        data-toggle="pill"
+        href="#content0"
+        style="display: none"
+        id="tab0"
+      ></a>
+      <a data-toggle="pill" href="#content1" id="tab1"
+        >Stock market analysis website</a
+      >
+      <a data-toggle="pill" href="#content2" id="tab2"
+        >Webpage analysis chrome extension</a
+      >
+      <a data-toggle="pill" href="#content3" id="tab3"
+        >Digital product shopping website</a
+      >
+      <a data-toggle="pill" href="#content4" id="tab4"
+        >Coding blog (this website)</a
+      >
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="contents">
-      <div class="tab-pane fade" id="content0" style="text-align:center;">Please choose one project by clicking a tab from
-        the left pane.</div>
+      <div class="tab-pane fade" id="content0" style="text-align: center">
+        Please choose one project by clicking a tab from the left pane.
+      </div>
       <div class="tab-pane fade" id="content1">
         {% include 'page_parts/projects_parts/project1.html' %}
       </div>
@@ -44,12 +59,12 @@
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block bodyScript %}
+{% endblock %} {% block bodyScript %}
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.min.js"
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-orgchart/1.0.0/jquery.orgchart.min.js"
   integrity="sha512-kevYqUwQJ8zo36Zjbn+6+nIF/zLV4K5XYIhuxIrBx4RiRlpRUKi5tRp7Sjd47FPnIFYPVX9LbKBm6hZLF1fi1A=="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"
+></script>
 <script src="{{url_for('static',filename='js/projects.js')}}"></script>
 {% endblock %}
