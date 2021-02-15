@@ -1,11 +1,11 @@
 #backPic1 {
-    border: 2px solid black;
-    padding: 25px;
-    background: url(../images/pic1.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  border: 2px solid black;
+  padding: 25px;
+  background: url(../images/pic1.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-.contactLink:hover{
-    background-color: white;
+.contactLink:hover {
+  background-color: white;
 }

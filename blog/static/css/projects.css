@@ -1,10 +1,10 @@
 div.orgChart {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 div.orgChart div.node {
-    cursor: zoom-in;
-    width: 120px;
+  cursor: zoom-in;
+  width: 120px;
 }
 
 /* all boxes show white when hovered */
@@ -13,52 +13,51 @@ div.orgChart div.node:hover,
 div.orgChart div.node.level1:hover,
 div.orgChart div.node.level2:hover,
 div.orgChart div.node.level3:hover,
-div.orgChart div.node.level4:hover{
-    background-color: white;
-    font-size: larger;
+div.orgChart div.node.level4:hover {
+  background-color: white;
+  font-size: larger;
 }
 
 /* set different colors by box levels */
 
 div.orgChart div.node.level1 {
-    background-color: #fbcece;
+  background-color: #fbcece;
 }
 
 div.orgChart div.node.level2 {
-    background-color: #cefbce;
+  background-color: #cefbce;
 }
 
 div.orgChart div.node.level3 {
-    background-color: #e0cefb;
+  background-color: #e0cefb;
 }
 
 div.orgChart div.node.level4 {
-    background-color: #84c2d1;
+  background-color: #84c2d1;
 }
 
 /* styles nav pills */
-.nav-pills{
-    background-color: rgb(168, 0, 0);
+.nav-pills {
+  background-color: rgb(168, 0, 0);
 }
-.nav-pills a{
-    color: white;
-    height: 50px;
-    width: 400px;
-    padding-left:  8px;
-    padding-right:  8px;
-    padding-top: 3px;
-    
+.nav-pills a {
+  color: white;
+  height: 50px;
+  width: 400px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
 }
 .nav-pills a:hover,
 .nav-pills .active {
-    background-color: red;
-    text-decoration: none;
-    color: white;
+  background-color: red;
+  text-decoration: none;
+  color: white;
 }
 
-.brief{
-    text-align: initial;
-    background-color: rgb(223, 223, 223);
-    font-size: large;
-    padding: 10px;
+.brief {
+  text-align: initial;
+  background-color: rgb(223, 223, 223);
+  font-size: large;
+  padding: 10px;
 }

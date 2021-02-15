@@ -1,50 +1,50 @@
 .displayBox {
-    width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .scroll-box {
-    overflow-y: auto;
-    height: 500px;
-    float: left;
-    padding: 1rem;
+  overflow-y: auto;
+  height: 500px;
+  float: left;
+  padding: 1rem;
 }
 
 #fetchContainer {
-    background-color: rgb(231, 220, 220);
+  background-color: rgb(231, 220, 220);
 }
 
 .buttonGroup {
-    border: 10px solid rgb(124, 123, 118);
-    padding: 20px;
+  border: 10px solid rgb(124, 123, 118);
+  padding: 20px;
 }
 
 #box1 {
-    background: -webkit-linear-gradient(to right, white, red);
-    background: linear-gradient(to right, white, red);
+  background: -webkit-linear-gradient(to right, white, red);
+  background: linear-gradient(to right, white, red);
 }
 
 #box1:hover {
-    background: -webkit-linear-gradient(to right, white, rgb(255, 125, 125));
-    background: linear-gradient(to right, white, rgb(255, 125, 125));
+  background: -webkit-linear-gradient(to right, white, rgb(255, 125, 125));
+  background: linear-gradient(to right, white, rgb(255, 125, 125));
 }
 
 #box2 {
-    background: -webkit-linear-gradient(to right, white, green);
-    background: linear-gradient(to right, white, green);
+  background: -webkit-linear-gradient(to right, white, green);
+  background: linear-gradient(to right, white, green);
 }
 
 #box2:hover {
-    background: -webkit-linear-gradient(to right, white, rgb(125, 255, 125));
-    background: linear-gradient(to right, white, rgb(125, 255, 125));
+  background: -webkit-linear-gradient(to right, white, rgb(125, 255, 125));
+  background: linear-gradient(to right, white, rgb(125, 255, 125));
 }
 
 #box3 {
-    background: -webkit-linear-gradient(to right, white, blue);
-    background: linear-gradient(to right, white, blue);
+  background: -webkit-linear-gradient(to right, white, blue);
+  background: linear-gradient(to right, white, blue);
 }
 
 #box3:hover {
-    background: -webkit-linear-gradient(to right, white, rgb(125, 125, 255));
-    background: linear-gradient(to right, white, rgb(125, 125, 255));
+  background: -webkit-linear-gradient(to right, white, rgb(125, 125, 255));
+  background: linear-gradient(to right, white, rgb(125, 125, 255));
 }
